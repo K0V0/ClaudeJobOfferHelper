@@ -24,11 +24,20 @@ normal for a human reader and optimized for the ATS of the employer.
 
 1. *Writing samples* below, only if *Samples* table is empty or candidate wants to add new ones.
 2. *Letter questions* below.
-3. Pick material for the letter from rating:
+3. Pick material for the letter from rating, written for the reader (see *Reader* in `templates/cover-letter.md`):
    - 2-3 strongest *must have* matches, each with concrete proof from *Skill details* or sources
      (system, result, number, years)
+   - soft *must haves* (ownership, maintainability, knowledge sharing, interest in learning) go first
+     for a non-technical reader, each as a how-you-work claim with one concrete fact behind it,
+     tech details stay in the CV. Take facts from *Strengths and stories* in profile, match by
+     *Offer phrases it answers*. If the section is empty, offer `/interview stories` before writing
+   - after saving the letter, add its file name into *Used in letters* of every story used
+   - never mention anything from *Never mention in letters*
    - `related` matches that are worth explaining honestly
    - preferences the offer meets - they are the real motivation, for *why us* type
+   - vary proof points: check letters in `profile/cover-letters/` and do not reuse a proof point
+     used in one of the last 3 letters, unless it is the only proof for a must have. If profile has
+     no other proof for that must have, tell candidate and suggest adding projects with `/interview`
    - never mention missing skills, red flags, salary or anything from *Findings* as weakness
 4. Pick tone: style notes for this employer type, then general *Style notes*, then *Tone by employer type*.
    Language is the language of the offer, unless candidate answered otherwise.
@@ -85,6 +94,7 @@ Check both versions before showing them, mechanically, not from memory:
 - no phrase from *Phrases* table in `templates/cover-letter.md`, in any language
 - no phrase listed in *Phrases candidate never uses*
 - every claim is backed by profile, no invented project, number or skill
+- no proof point repeated from the last 3 letters in `profile/cover-letters/` (except the only proof for a must have)
 - length within limit, count characters if the form has a limit
 - greeting and closing match the chosen tone
 

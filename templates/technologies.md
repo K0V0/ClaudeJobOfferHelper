@@ -281,3 +281,226 @@ Every candidate gets the same questions for the same technology, so profiles are
 ## Added by agent
 
 <!-- Agent appends new technologies here in the same format -->
+
+### Bash / Linux
+- Category: operations
+- Aliases: Bash, Shell, Linux, Unix, Ubuntu, RHEL
+- Related: PowerShell
+1. [L1] Did You use Linux command line daily (files, processes, permissions, ssh) ?
+2. [L2] Did You write Bash scripts with arguments, conditions and loops used by others ?
+3. [L3] Did You debug a production Linux server (disk, memory, network, systemd, journald) ?
+4. [L3] Did You write Bash scripts for deployment or CI with proper error handling (`set -euo pipefail`, traps) ?
+5. [L4] Did You harden or tune Linux servers (kernel params, firewall, users, SELinux / AppArmor) ?
+
+### ArgoCD
+- Category: delivery
+- Aliases: Argo CD, GitOps, Flux
+- Related: Kubernetes, Helm, CI/CD
+1. [L1] Did You deploy an application through ArgoCD ?
+2. [L2] Did You write ArgoCD Application manifests and sync policies ?
+3. [L3] Did You set up ArgoCD from scratch and structure a GitOps repository ?
+4. [L3] Did You use ApplicationSets, app of apps or sync waves / hooks ?
+5. [L4] Did You design GitOps promotion between multiple environments or clusters ?
+
+### JavaScript / Node.js
+- Category: language
+- Aliases: JavaScript, JS, ECMAScript, Node.js, NodeJS, Express
+- Related: TypeScript
+1. [L1] Did You write JavaScript for a web page (DOM, events, fetch) ?
+2. [L2] Did You write or maintain a Node.js service in a real project ?
+3. [L3] Did You use async / await, Promises and npm dependencies in production code ?
+4. [L4] Did You profile or debug event loop, memory or performance problems in Node.js ?
+
+### Ruby on Rails
+- Category: framework
+- Aliases: Ruby, Rails, RoR
+- Related: Django, Laravel
+1. [L1] Did You create a Rails application with models, controllers and views ?
+2. [L2] Did You use ActiveRecord associations, migrations and validations in a real project ?
+3. [L3] Did You run a Rails application in production for real users ?
+4. [L3] Did You write or fork a Ruby gem ?
+5. [L4] Did You optimise Rails performance (N+1, caching, background jobs) ?
+
+### Camunda
+- Category: workflow engine
+- Aliases: Camunda BPM, Camunda 7, Camunda 8, Zeebe, BPMN
+- Related: Flowable, Activiti, jBPM
+1. [L1] Did You model or read BPMN processes ?
+2. [L2] Did You implement service tasks / external task workers or Java delegates ?
+3. [L3] Did You debug stuck process instances, incidents or failed jobs in production ?
+4. [L3] Did You integrate Camunda into a Spring Boot application or extend the engine ?
+5. [L4] Did You design a platform or reusable components on top of Camunda ?
+
+### ActiveMQ / Artemis
+- Category: messaging
+- Aliases: ActiveMQ, Artemis, ArtemisMQ, JMS, IBM MQ
+- Related: RabbitMQ, Kafka
+1. [L1] Did You send and receive JMS messages ?
+2. [L2] Did You configure queues, topics and listeners in a Spring application ?
+3. [L3] Did You handle redelivery, dead letter queues and transactions ?
+4. [L4] Did You configure or operate the broker (clustering, persistence, HA) ?
+
+### HashiCorp Vault
+- Category: security
+- Aliases: Vault, secrets management, Infisical, AWS Secrets Manager
+- Related: Kubernetes, Terraform
+1. [L1] Did You read secrets from Vault in an application or pipeline ?
+2. [L2] Did You configure secret engines, paths and policies ?
+3. [L3] Did You integrate Vault with Kubernetes (injector, CSI, External Secrets) ?
+4. [L4] Did You run Vault in production (unsealing, HA, dynamic secrets, PKI) ?
+
+### Keycloak
+- Category: security
+- Aliases: Red Hat SSO, OIDC provider, IAM
+- Related: Spring Security, OAuth2
+1. [L1] Did You integrate an application with Keycloak login ?
+2. [L2] Did You configure realms, clients, roles and mappers ?
+3. [L3] Did You configure identity brokering, federation (LDAP / AD) or custom flows ?
+4. [L4] Did You run Keycloak in production or write Keycloak extensions / themes ?
+
+### Elasticsearch
+- Category: database
+- Aliases: Elastic, OpenSearch, ELK
+- Related: Observability, MongoDB
+1. [L1] Did You query Elasticsearch or search data in Kibana ?
+2. [L2] Did You index documents and write search queries from an application ?
+3. [L3] Did You design mappings, analyzers or aggregations ?
+4. [L4] Did You operate a cluster (shards, replicas, index lifecycle) ?
+
+### Maven / Gradle
+- Category: build tool
+- Aliases: Maven, Gradle
+- Related: CI/CD
+1. [L1] Did You build a project and add dependencies with Maven or Gradle ?
+2. [L2] Did You work with a multi-module project ?
+3. [L3] Did You configure plugins, profiles and dependency conflict resolution ?
+4. [L4] Did You write own plugin or set up company parent POM / convention plugins ?
+
+### Android
+- Category: mobile
+- Aliases: Android SDK, Jetpack, Jetpack Compose
+- Related: Kotlin, Java
+1. [L1] Did You create an Android application ?
+2. [L2] Did You publish an app or have real users using it ?
+3. [L3] Did You use background work, notifications or lifecycle-aware components ?
+4. [L4] Did You design architecture of a larger Android app (MVVM, DI, modularization) ?
+
+### SOAP
+- Category: integration
+- Aliases: SOAP, WSDL, XML web services, JAX-WS, NDC
+- Related: REST API design
+1. [L1] Did You call a SOAP service ?
+2. [L2] Did You generate clients from WSDL / XSD and map XML messages ?
+3. [L3] Did You implement integration against a complex external XML specification ?
+4. [L4] Did You design a SOAP or XML based interface for external partners ?
+
+### Event-driven architecture
+- Category: architecture
+- Aliases: EDA, event-driven, event sourcing, CQRS, asynchronous messaging
+- Related: Kafka, RabbitMQ, ActiveMQ / Artemis, Microservices
+1. [L1] Did You work on a system where services communicate through events or messages ?
+2. [L2] Did You implement publishing and consuming of domain events between services ?
+3. [L3] Did You handle eventual consistency, idempotent consumers or outbox pattern ?
+4. [L4] Did You design event flows / event contracts for multiple services or use event sourcing / CQRS ?
+
+### AI coding assistants
+- Category: tooling
+- Aliases: Claude Code, ChatGPT, GitHub Copilot, Cursor, LLM
+- Related: -
+1. [L1] Did You use an AI chat for coding questions ?
+2. [L2] Did You use an AI agent that edits code in Your repository in daily work ?
+3. [L3] Did You write project instructions, custom commands or skills for an AI agent ?
+4. [L4] Did You build tools or workflows on top of LLM APIs or agents ?
+5. [L3] Do You write a specification or plan first and let the agent implement it ?
+6. [L3] Do You review agent-written code and guard it with strict tests before merging ?
+
+### Software architecture
+- Category: architecture
+- Aliases: architectural thinking, solution design, system design, architecture design, ADR
+- Related: Microservices, Event-driven architecture, REST API design
+1. [L1] Did You follow an existing architecture (layers, modules) and can explain why it is structured that way ?
+2. [L2] Did You propose structure for a new feature or module that was accepted by the team ?
+3. [L3] Did You design a new service or application from scratch (structure, persistence, integrations) and run it in production ?
+4. [L3] Did You write ADRs or lead technical discussions about trade-offs and maintainability ?
+5. [L4] Did You set technical direction or a modernization plan for a whole system or several teams ?
+
+### Regulated domain
+- Category: domain
+- Aliases: fintech, banking, payments, insurance, public sector, regulated environment, PSD2, PSD3
+- Related: -
+1. [L1] Did You work on a project where audits, compliance or strict release processes were required ?
+2. [L2] Did You work in a regulated environment (public sector, insurance, healthcare, energy) ?
+3. [L3] Did You work on a production project for a bank, payments or fintech company ?
+4. [L4] Did You implement regulatory requirements yourself (PSD2 / PSD3, AML, KYC, strong customer authentication) ?
+
+### Apache Camel
+- Category: integration
+- Aliases: Camel, Camel K, Camel Quarkus, Red Hat Fuse
+- Related: Spring Integration, MuleSoft, ActiveMQ / Artemis
+1. [L1] Did You write Camel routes in a tutorial, side project or small task ?
+2. [L2] Did You use Camel routes in production with components (Kafka, HTTP, file, JMS) ?
+3. [L3] Did You handle redelivery, dead letter channel or EIPs (split, aggregate, content-based router) in production ?
+4. [L4] Did You design an integration platform on Camel or write own Camel components ?
+
+### Design patterns / clean code
+- Category: practice
+- Aliases: design patterns, clean code, SOLID, GoF, refactoring
+- Related: Software architecture
+1. [L1] Can You explain common design patterns (strategy, factory, builder, adapter) and SOLID ?
+2. [L2] Did You use design patterns deliberately in production code ?
+3. [L3] Did You refactor legacy code to clean code / SOLID, with tests ?
+4. [L3] Did You regularly point out design / clean code problems in code review ?
+5. [L4] Did You define coding standards or architecture rules for the team ?
+
+### Jira / Confluence
+- Category: tooling
+- Aliases: Jira, Confluence, Atlassian, YouTrack
+- Related: -
+1. [L1] Did You work with tickets, boards and sprints in Jira ?
+2. [L2] Did You write or maintain technical documentation in Confluence ?
+3. [L3] Did You configure Jira workflows, boards or automation for the team ?
+
+### Google Cloud
+- Category: cloud
+- Aliases: GCP, Google Cloud Platform, GKE, Cloud Run
+- Related: AWS, Azure
+1. [L1] Did You deploy something to GCP ?
+2. [L2] Did You use GCP managed services (Cloud Run, GKE, Cloud SQL, Pub/Sub) in a real project ?
+3. [L3] Did You set up IAM, networking or cost monitoring in GCP ?
+4. [L4] Did You design multi-environment GCP infrastructure (projects, IaC, landing zone) ?
+
+### Git
+- Category: tooling
+- Aliases: GitHub, GitLab, Bitbucket, version control
+- Related: SVN
+1. [L1] Did You commit, push and pull in Git daily ?
+2. [L2] Did You resolve merge conflicts and work with feature branches and pull requests ?
+3. [L3] Did You use rebase, cherry-pick, bisect or rewrite history safely ?
+4. [L4] Did You define branching strategy or migrate repositories for the team ?
+
+### Microsoft SQL Server
+- Category: database
+- Aliases: MSSQL, SQL Server, T-SQL, Azure SQL
+- Related: SQL, PostgreSQL, Oracle
+1. [L1] Did You use SQL Server as an application database ?
+2. [L2] Did You write T-SQL queries, stored procedures or migrations for SQL Server ?
+3. [L3] Did You analyse execution plans or indexes in SQL Server ?
+4. [L4] Did You configure SQL Server high availability, replication or performance tuning ?
+
+### Networking
+- Category: operations
+- Aliases: network, TCP/IP, DNS, TLS, firewall, load balancer
+- Related: Bash / Linux, Kubernetes
+1. [L1] Do You understand IP, DNS, ports and HTTP / TLS and use curl, ping, nslookup ?
+2. [L2] Did You debug firewall, DNS, proxy or certificate problems between services ?
+3. [L3] Did You configure load balancers, ingress, VPN, network policies or subnets ?
+4. [L4] Did You design network topology or segmentation for a system ?
+
+### Application servers
+- Category: operations
+- Aliases: Tomcat, WebLogic, WildFly, JBoss, WebSphere, Apache httpd, Nginx, web server
+- Related: Docker, Bash / Linux
+1. [L1] Did You deploy an application to Tomcat or another application server ?
+2. [L2] Did You configure Apache httpd or Nginx (virtual hosts, reverse proxy) ?
+3. [L2] Did You deploy or administer applications on WebLogic, WildFly or WebSphere ?
+4. [L3] Did You tune or troubleshoot an application server in production (threads, memory, connection pools) ?
