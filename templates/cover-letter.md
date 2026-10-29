@@ -42,6 +42,19 @@ Do not use these or their translations. Replace with concrete fact from candidat
 | I look forward to the opportunity to discuss | těším se na možnost osobního setkání | short, plain closing from samples or *Tone* table |
 | Furthermore; Moreover; Additionally (at sentence start) | Navíc; Dále | nothing, or `also` inside sentence |
 
+## Reader
+
+First contact person is usually not technical: recruiter, HR, agency. They decide if the letter goes
+further, and they can not judge `Flyway migrations` or `OpenAPI error format`. Tech details are in the CV.
+
+| reader | what the letter should do |
+| ------ | ------------------------- |
+| recruiter, HR, agency (default, also when a name without a role is given) | how candidate works and what they care about, mapped to soft *must haves* of the offer (ownership, maintainability, sharing knowledge, learning), each claim with one concrete fact in plain words; technologies only as names (Java, Spring Boot, DevOps), no deep tech detail |
+| CTO, tech lead, developer (only when offer or candidate says so) | technical proof is fine: systems, technologies, design decisions |
+
+- Bare slogans (`I am responsible`, `I do things end to end`) are not enough, every claim needs a fact behind it.
+- CV overview (list of technologies and what was done with them) is not a letter, it repeats the CV.
+
 ## Tone by employer type
 
 Used when candidate has no sample for this employer type. Detect type from offer and company research

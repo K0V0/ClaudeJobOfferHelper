@@ -61,6 +61,29 @@ Weight of every preference, used for preference match rating:
 | Avoided domains | | | |
 | Other | | | |
 
+## Strengths and stories
+
+Filled by `/interview` (*Strengths and stories*), used by `/cover-letter` for *why hire me* answers and
+soft *must haves*. Only facts candidate gave or confirmed.
+
+### Strengths
+
+| Strength | Proved by stories | Offer phrases it answers |
+| -------- | ----------------- | ------------------------ |
+
+### Stories
+
+| Id | Story (plain words) | Starting state | What candidate did | Result | Strengths | Used in letters |
+| -- | ------------------- | -------------- | ------------------ | ------ | --------- | --------------- |
+
+### Other
+
+- Proudest result:
+- Praised by colleagues / manager for:
+- Different from other candidates on same level:
+- Motivation (why looking now):
+- Never mention in letters:
+
 ## Writing style
 
 Filled by `/cover-letter` from candidate own letters. Samples are stored in `profile/writing-samples/`,

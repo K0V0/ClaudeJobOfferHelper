@@ -1,7 +1,7 @@
 ---
 name: interview
 description: Interview the candidate about technologies, skills and preferences and save answers into profile/candidate-profile.md. Use when candidate runs the app first time, wants to add a technology, or says profile is outdated.
-argument-hint: "[technology to add or update]"
+argument-hint: "[technology to add or update | stories]"
 ---
 
 # Candidate interview
@@ -13,6 +13,7 @@ Goal is to fill `profile/candidate-profile.md` with comparable knowledge levels,
 1. If `profile/candidate-profile.md` does not exist, copy `templates/candidate-profile.md` there.
 2. Read the profile and `templates/technologies.md`.
 3. If argument with technology was given, go straight to *Technology questions* for that technology only.
+   If argument is `stories`, go straight to *Strengths and stories*.
 
 ## Bootstrap from candidate sources
 
@@ -79,6 +80,35 @@ After technologies, fill *Seniority* and *Preferences* sections of profile with 
   *Responsibilities merge table* as options (multi select) so candidate can pick.
 - After every preference value ask its weight: `Deal-breaker` / `Important` / `Nice` / `Don't care`.
   Ask value and weight in the same call where possible. Survival minimum salary is always `deal-breaker`.
+
+## Strengths and stories
+
+After preferences, or alone when argument is `stories`. Goal is material for *why hire me* answers
+and for soft *must haves* in offers (ownership, maintainability, sharing knowledge, learning), written
+for a non-technical reader. Fill *Strengths and stories* section of profile.
+
+1. Prefill: from sources, *Skill details*, writing samples and earlier letters propose 3-6 candidate
+   stories (what happened, where). Do not invent results, leave them empty.
+2. Ask with `AskUserQuestion`, one call:
+   - `Strengths` (multi select, candidate picks max 3) - what colleagues come to You for, or what You do
+     better than others. Options: 4 most likely from profile, for example `Owning work end to end`,
+     `Long-term maintainable code`, `Automating manual work`, `Bridging dev and ops`, `Explaining and sharing
+     knowledge`, `Learning new tech fast`, `Debugging hard problems`. *Other* for own words.
+   - `Stories` (multi select) - which prefilled stories are real and can be told in a letter.
+   - `Motivation` (multi select) - why candidate is looking now, options from profile and preferences,
+     for example `Back to Java backend`, `Room to grow`, `Better pay`, `Stability`, `Product / domain`.
+   - `Avoid` (single select) - is there something letters must never mention (reason for leaving, gap,
+     NDA project) ? `No` / `Yes, I will write it`.
+3. Then one plain numbered message, free text, answered briefly. For every picked story ask:
+   - what was the problem or starting state
+   - what did You do Yourself (not the team)
+   - what changed after: number, time saved, who used it, what stopped breaking. `don't know` is ok
+   Also ask: the result You are most proud of; what a colleague or manager praised You for;
+   what You do that other candidates on Your level usually do not; and the *Avoid* detail if `Yes`.
+4. Write a story only with facts candidate gave or confirmed. Missing result stays empty, mark `unsure`
+   if candidate guessed. Map every story to strengths and to offer phrases it proves
+   (Czech and English, for example `ownership`, `dotahování do konce`).
+5. Ask max 3 stories in first run. Candidate can add more later with `/interview stories`.
 
 ## Keeping it short
 
