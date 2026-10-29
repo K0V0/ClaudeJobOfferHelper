@@ -60,3 +60,37 @@ Weight of every preference, used for preference match rating:
 | Preferred domains | | | |
 | Avoided domains | | | |
 | Other | | | |
+
+## Writing style
+
+Filled by `/cover-letter` from candidate own letters. Samples are stored in `profile/writing-samples/`,
+generated letters in `profile/cover-letters/`.
+
+- Name for signature:
+- Contact in signature (e-mail, phone, LinkedIn, GitHub):
+- Letter languages:
+
+### Samples
+
+Only letters written or at least finalized by candidate, not raw AI output.
+
+| File | Offer / company | Employer type | Prompt type | Language | Written by |
+| ---- | --------------- | ------------- | ----------- | -------- | ---------- |
+
+### Style notes
+
+Learned from samples, used instead of *Tone by employer type* in `templates/cover-letter.md` where filled.
+
+| Property | Value |
+| -------- | ----- |
+| Typical length | |
+| Sentence length and structure | |
+| Formality, Ty / Vy, I / we | |
+| Greeting and closing | |
+| Typical vocabulary and phrases | |
+| Phrases candidate never uses | |
+| Punctuation habits | |
+| How candidate presents results | |
+
+| Employer type | Differences from the style above |
+| ------------- | -------------------------------- |

@@ -95,3 +95,4 @@ Follow *Calculation and results presentation* in `assignments/task1.md`, in this
    - any violated `deal-breaker` -> **NOT SUITABLE** and which deal-breaker
    - otherwise **SUITABLE**, total % and the most important finding to verify on interview
 6. One line listing what was newly saved to profile.
+7. If verdict is **SUITABLE**, offer `/cover-letter` for this offer.

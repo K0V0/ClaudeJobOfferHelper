@@ -19,4 +19,10 @@ Open this project in Claude Code and write anything - if You have no profile yet
    - if offer needs something Your profile does not cover, I will ask a few clickable `Yes` / `No` questions first
      and remember answers for next offers
 4. **Results**
-   - offer summary, match rating and red flags (format will be specified in assignments)
+   - offer summary, match rating, red flags and final verdict
+5. **Cover letter**
+   - run `/cover-letter` after rating, or ask for cover letter, motivation letter or answer to application question
+   - first time I ask for letters You wrote Yourself (ideally with the offers they were for), to learn Your style
+   - tell me if the form asks something specific, like *Why you ?* or *How will you be useful for us ?*
+   - You get two versions to compare: normal one for a human and one optimized for the ATS the company uses
+   - letters are saved to `profile/cover-letters/`, paste back Your final edited version and it becomes Your writing sample
