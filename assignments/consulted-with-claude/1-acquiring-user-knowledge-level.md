@@ -177,3 +177,132 @@ Both skills now use Claude Code's built-in `AskUserQuestion` tool:
 
 Note: the interview description earlier in this file (one numbered message per technology, typed answers) is replaced
 by the clickable flow above.
+
+---
+
+## Follow-up question
+
+Now let's talk about that tables - do you have any ideas what can be filled there or what might be missing ?
+
+## Claude answer
+
+**Role competence complexity table**
+- It mixes two scales: technical breadth (single / with overlap / multirole / full-fullstack) and non-technical load
+  (none / domain / product + sales / management). Splitting into two columns makes matching clearer; `Founder` is
+  maximum on both.
+- `multirole` and `full-fullstack` overlap - multirole = deep in 2 fields, full-fullstack = all fields including ops.
+- Missing roles: tech lead, architect, people manager / team lead, consultant / presales.
+- Seniority (junior / medior / senior / lead) is missing entirely.
+
+**Responsibilities merge table**
+- `design API` fits better in `Extened` than `Bare`.
+- Missing: code review / mentoring, planning, operations (daytime, unlike on call), legacy maintenance, hiring,
+  people management, onsite / travel, security / compliance.
+- Split `bodyshop` into one agency vs. chain of agencies.
+- Add column `possible red flag (y/n)`.
+
+**Missing tables**
+1. Red flags / phrase decoder (phrases + inconsistency rules)
+2. Company type (product, software house, agency, bodyshop, startup, corporate, public sector)
+3. Salary normalization (survival / expected / walk-away minimum, IČO MD rate -> HPP monthly equivalent)
+
+**Missing in candidate profile**
+- domain experience, languages (CEFR), leadership experience
+- preference weights (`deal-breaker` / `important` / `don't care`)
+- company size, team size, notice period, legacy tolerance, travel
+
+Recommended first: preference weights, red flag table, seniority.
+
+---
+
+## Follow-up question
+
+Yes, add those three first.
+
+## Claude answer
+
+- `templates/constants.md` - *Seniority table* (junior / medior / senior / lead with years, autonomy, scope, offer
+  signals; autonomy and scope decide, years are orientation) and *Red flags table* (phrases with meaning, severity
+  `info` / `warning` / `alert` and interview question; inconsistency rules like title vs. requirements, švarcsystém).
+- `templates/candidate-profile.md` - *Seniority* section (self-assessed / agent estimate / target) and *Preferences*
+  as table: preference | how to ask | value | weight. Survival minimum salary is always `deal-breaker`.
+- Interview asks seniority and every preference with its weight as clickable options.
+- Offer review determines offer seniority from requirements, checks red flags, marks violated deal-breaker as
+  **NOT SUITABLE**, unknown preferences are not counted as violated.
+
+---
+
+## Follow-up question
+
+I am proud of that red flag table - I guess there is more than that, what else might be there ? What about
+"Fruits in office" or "Free coffee" ? "Beer after work", "Playing games together".
+
+Let's find a lot more of them - I found especially juniors that come from bad jobs and "famine holes" on
+countryside do not spot that red flags, and that hurts market and morals in the field for all of us.
+
+## Claude answer
+
+Red flag table grew from ~23 to ~80 entries, new sections in `templates/constants.md`:
+
+- **Phrases** (+18): "work hard, play hard", "young dynamic team", "stress resistance" (*odolnost vůči stresu*,
+  `alert`), "flexibility", "loyalty", "not a 9-5 job", "go the extra mile", "salary based on performance", ...
+- **Perks instead of benefits**: perks are fine themselves, red flag when they replace real benefits (money, time,
+  security). Fruit / coffee `info`, beer after work `warning` (pressure to stay, drinking culture), games `info`,
+  pizza Fridays / free dinner `warning` (people stay late).
+- **Contract and money**: part of salary in cash, minimum wage + bonuses, DPP/DPČ for full time, unpaid trial day
+  (illegal in CZ), overtime included in salary, training repayment, non-compete, own laptop.
+- **Junior traps**: only developer, "also help with printers", paid academies, multi-day test assignments,
+  unpaid internships.
+- **Hiring process**: any payment from candidate = scam, ID copy before contract, >4 rounds, 24h pressure.
+- **Inconsistency rules** (+7): only perks no salary, "cutting-edge" with Java 8, Extended responsibilities with
+  junior title, salary range wider than 2x, offer reposted for months.
+- Czech phrases are matched too; more `info` flags together raise severity.
+- `/rate-offer` explains every flag in plain words when candidate target level is junior.
+
+Notes: CZ legal points kept general - verify against current *zákoník práce* (changed in 2025). "Reposted for months"
+needs a history of rated offers, which does not exist yet.
+
+---
+
+## Follow-up question
+
+OK, I added something about rating in task1, can you place it where needed ?
+
+## Claude answer
+
+New *Scoring* section in `.claude/skills/rate-offer/SKILL.md` following `assignments/task1.md`: skill match
+= 1 point, preference met = 1 point, red flag = -1, total = (skills + preferences - red flags) / max points in %.
+Output uses the results table from `task1.md`.
+
+Open decisions: partial matches, unmentioned preferences (not counted, not even into maximum), red flag severity,
+weights `important` / `nice` no longer change the score, total min 0 %.
+
+## Follow-up question
+
+Partial 0.5, red flags by severity.
+
+## Claude answer
+
+- Partial match (one level below required or related technology) = 0.5 point.
+- Red flags: `info` = 0, `warning` = -1, `alert` = -2; info flags are still listed.
+
+---
+
+## Follow-up question
+
+Yes, update it (`task1.md`), I also finished that presentation instructions.
+
+## Claude answer
+
+- `assignments/task1.md` - scoring lines updated (partial 0.5, red flags by severity).
+- `/rate-offer` output order:
+  1. Summary including offer seniority vs. candidate target level
+  2. Requirement table (required level, candidate level, match)
+  3. Statistics table with rows from `task1.md`, percentage and points (`75 % (6 / 8)`); *missed* = max - gained
+  4. Findings table: finding | category | severity | detail
+     - missing skill: `required` / `optional`, required vs. candidate level
+     - missing requirement (preference): weight as severity, margin as detail (`salary 10 000 CZK below expected`)
+     - red flag: `info` / `warning` / `alert`, interview question as detail
+  5. Final verdict: **NOT SUITABLE** with violated deal-breaker, or **SUITABLE** with total % and main thing to verify
+- Deal-breaker warning moved from top to the verdict at the end, as in `task1.md`.
+- Profile weights `important` / `nice`: 1 point when met, used as severity when missed.

@@ -24,8 +24,29 @@ argument-hint: "[offer text or URL]"
    - exact technology in profile - use its level
    - only related technology in profile - one level lower, max level 2, mark as `related`
    - nothing in profile - **unclear**
-4. Run *Clarification* below before computing final rating.
-5. Produce summary and rating as described in `assignments/task1.md`.
+4. Determine offer seniority using *Seniority table* in `templates/constants.md` - from responsibilities
+   and requirements, not only from title. Compare with candidate target level.
+5. Check offer against all sections of *Red flags table*. If candidate target level is *junior*, explain
+   every red flag in plain words: what it means in practice and why accepting it hurts candidate and market.
+6. Check preferences: any violated `deal-breaker` marks offer as **not suitable**.
+   If offer does not say anything about a preference, count it as unknown, not as violated.
+7. Run *Clarification* below before computing final rating.
+8. Compute points as described in *Scoring* below.
+9. Produce summary and rating as described in `assignments/task1.md`.
+
+## Scoring
+
+Points as defined in *Rating offer* in `assignments/task1.md`:
+
+- Hard skills: every requirement where candidate level >= required level = 1 point.
+  `partial` (one level below required) and `related` = 0.5 point, `no` and `unknown` = 0.
+  Count separately for must have, nice to have and total.
+- Preferences: every met preference = 1 point. Preferences with weight `don't care` and preferences
+  the offer says nothing about are not counted, not even into maximum.
+- Red flags by severity: `info` = 0, `warning` = -1, `alert` = -2 points.
+  `info` flags are still listed in output, they only do not lower the score.
+- Total = (hard skill points + preference points - red flags) / (max hard skill points + max preference points), in %.
+  Total can not go below 0 %.
 
 ## Clarification
 
@@ -55,8 +76,22 @@ Rules:
 
 ## Output
 
-- Summary part from `assignments/task1.md`.
-- Requirement table: requirement | must / nice | required level | candidate level | match (yes / partial / no / unknown).
-- Rating: must have %, nice to have %, total %, preference match.
-- Red flags and inconsistencies.
-- One line listing what was newly saved to profile.
+Follow *Calculation and results presentation* in `assignments/task1.md`, in this order:
+
+1. Summary part from `assignments/task1.md`, including seniority: offer level vs candidate target level.
+2. Requirement table: requirement | must / nice | required level | candidate level | match (yes / partial / no / unknown).
+3. Statistics table, exactly with rows from `assignments/task1.md`. Show points next to percentage,
+   for example `75 % (6 / 8)`.
+   - *Hard skills fit* shows must have, nice to have and total.
+   - *missed* rows = maximum points minus gained points, so partial match counts half as missed.
+4. Findings table: finding | category | severity | detail
+   - missing skill - severity `required` (must have) or `optional` (nice to have),
+     detail = required vs candidate level
+   - missing requirement (preference) - severity = preference weight, detail = margin, for example
+     `salary 10 000 CZK below expected`, `2 office days, wanted full remote`
+   - red flag - severity `info` / `warning` / `alert`, detail = question for interview
+   - sort by category, inside category from most severe
+5. Final verdict - one line:
+   - any violated `deal-breaker` -> **NOT SUITABLE** and which deal-breaker
+   - otherwise **SUITABLE**, total % and the most important finding to verify on interview
+6. One line listing what was newly saved to profile.

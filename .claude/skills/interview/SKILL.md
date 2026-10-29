@@ -70,9 +70,15 @@ Go one technology at a time, most used first.
 
 ## Preferences
 
-After technologies, ask *Preferences* section of profile, in 1-2 messages. Use
-*Role competence complexity table* and *Responsibilities merge table* from `templates/constants.md`
-as options so candidate can pick.
+After technologies, fill *Seniority* and *Preferences* sections of profile with `AskUserQuestion`.
+
+- Seniority: ask self-assessed and target level with options from *Seniority table* in
+  `templates/constants.md`. Write own estimate from sources and calibration answers next to it.
+  If they differ by more than one level, tell candidate why.
+- Preferences: follow *How to ask* column. Use *Role competence complexity table* and
+  *Responsibilities merge table* as options (multi select) so candidate can pick.
+- After every preference value ask its weight: `Deal-breaker` / `Important` / `Nice` / `Don't care`.
+  Ask value and weight in the same call where possible. Survival minimum salary is always `deal-breaker`.
 
 ## Keeping it short
 
