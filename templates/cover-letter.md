@@ -52,6 +52,20 @@ further, and they can not judge `Flyway migrations` or `OpenAPI error format`. T
 | recruiter, HR, agency (default, also when a name without a role is given) | how candidate works and what they care about, mapped to soft *must haves* of the offer (ownership, maintainability, sharing knowledge, learning), each claim with one concrete fact in plain words; technologies only as names (Java, Spring Boot, DevOps), no deep tech detail |
 | CTO, tech lead, developer (only when offer or candidate says so) | technical proof is fine: systems, technologies, design decisions |
 
+### Keep stories for interview
+
+Do not disclose exact situations from past work projects in a letter. Those are for the next rounds,
+where candidate tells them in person with context.
+
+- Allowed: summary level facts - years, role, share of work (`90 % DevOps`), type of system or domain
+  (`state administration`), technologies, own public projects (Tabilinks, kovo.space).
+- Not allowed: concrete incidents and what went wrong, client or employer internals, internal numbers
+  (`110 repositories`, times of night), step by step stories from *Stories* in profile.
+- A story from *Stories* can be turned into one summary sentence about how candidate works, without
+  the situation itself (`when something breaks in my own solution, I fix it and change the process`).
+- Exception: the form explicitly asks for a specific situation (for example *describe your worst
+  incident*). Then answer it, but only with what candidate is fine to share.
+
 - Bare slogans (`I am responsible`, `I do things end to end`) are not enough, every claim needs a fact behind it.
 - CV overview (list of technologies and what was done with them) is not a letter, it repeats the CV.
 
@@ -116,6 +130,11 @@ Detect from application URL or form page. If unknown, ask candidate and fall bac
   Write acronym and full name once each, for example `Continuous Integration (CI)`.
 - Cover every *must have* the candidate matches (level >= 1 or `related`), most important first.
   Each important keyword 1-2 times, no keyword stuffing.
+- Never copy offer phrases as candidate experience (`integrations across the bank's systems is what I have done for years`)
+  unless the profile confirms that exact claim. Keywords may appear only at the level the profile shows:
+  L1 = `tried / called once`, L2 = `used in a project`, never stronger wording.
+- Never add context or purpose that is not in the profile (`certificates *to secure communication*`,
+  `deployed *on OpenShift*` when candidate only monitored there). Write what was done, nothing around it.
 - Never add a skill the candidate does not have. For `related` match write it honestly
   (`I work with MySQL, which is close to the PostgreSQL you use`). Missing must-have may be mentioned
   only as something candidate is learning, and only if it is true in profile.

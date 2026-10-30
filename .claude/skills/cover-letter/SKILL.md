@@ -33,6 +33,8 @@ normal for a human reader and optimized for the ATS of the employer.
      *Offer phrases it answers*. If the section is empty, offer `/interview stories` before writing
    - after saving the letter, add its file name into *Used in letters* of every story used
    - never mention anything from *Never mention in letters*
+   - never describe exact situations from past work projects, keep them for interview, see
+     *Keep stories for interview* in `templates/cover-letter.md`
    - `related` matches that are worth explaining honestly
    - preferences the offer meets - they are the real motivation, for *why us* type
    - vary proof points: check letters in `profile/cover-letters/` and do not reuse a proof point
@@ -94,6 +96,8 @@ Check both versions before showing them, mechanically, not from memory:
 - no phrase from *Phrases* table in `templates/cover-letter.md`, in any language
 - no phrase listed in *Phrases candidate never uses*
 - every claim is backed by profile, no invented project, number or skill
+- check every sentence against profile: no offer phrase presented as own experience, no wording stronger than the level, no added context or purpose
+- no exact situation from past work projects (incident, client internals, internal numbers), unless the form asks for it
 - no proof point repeated from the last 3 letters in `profile/cover-letters/` (except the only proof for a must have)
 - length within limit, count characters if the form has a limit
 - greeting and closing match the chosen tone

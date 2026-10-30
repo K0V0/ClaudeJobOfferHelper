@@ -26,7 +26,8 @@ argument-hint: "[offer text or URL]"
    - nothing in profile - **unclear**
 4. Determine offer seniority using *Seniority table* in `templates/constants.md` - from responsibilities
    and requirements, not only from title. Compare with candidate target level.
-5. Check offer against all sections of *Red flags table*. If candidate target level is *junior*, explain
+5. Check offer against all sections of *Red flags table*. Posting date only from what the page states
+   (text or structured data), never decoded from offer IDs or URLs - those are guesses. If candidate target level is *junior*, explain
    every red flag in plain words: what it means in practice and why accepting it hurts candidate and market.
 6. Check preferences: any violated `deal-breaker` marks offer as **not suitable**.
    If offer does not say anything about a preference, count it as unknown, not as violated.

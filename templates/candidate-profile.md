@@ -35,6 +35,7 @@ Levels and signals are defined in *Seniority table* in `templates/constants.md`.
 - Self-assessed level:
 - Level estimated by agent from sources and interview:
 - Target level (what candidate applies for):
+- Education:
 
 ## Preferences
 

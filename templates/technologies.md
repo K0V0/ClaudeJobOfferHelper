@@ -504,3 +504,130 @@ Every candidate gets the same questions for the same technology, so profiles are
 2. [L2] Did You configure Apache httpd or Nginx (virtual hosts, reverse proxy) ?
 3. [L2] Did You deploy or administer applications on WebLogic, WildFly or WebSphere ?
 4. [L3] Did You tune or troubleshoot an application server in production (threads, memory, connection pools) ?
+
+### Windows Server / Active Directory
+- Category: operations
+- Aliases: Windows Server, AD, Active Directory, GPO, Entra ID
+- Related: Microsoft 365
+1. [L1] Did You create users, groups, reset passwords or manage permissions in Active Directory ?
+2. [L2] Did You install or maintain Windows Server, its roles and updates ?
+3. [L3] Did You configure group policies, domain join or DNS / DHCP on Windows ?
+4. [L4] Did You design AD structure or hybrid identity (AD + Entra ID) for a company ?
+
+### Microsoft 365 / IT support
+- Category: operations
+- Aliases: M365, Office 365, Exchange Online, Teams admin, helpdesk, user support
+- Related: Windows Server / Active Directory
+1. [L1] Did You solve PC, printer, phone or access problems for colleagues ?
+2. [L2] Did You manage M365 users, licenses, mailboxes or Teams ?
+3. [L3] Did You set up device management (Intune) or conditional access ?
+
+### PowerShell
+- Category: language
+- Aliases: PowerShell, pwsh
+- Related: Bash / Linux
+1. [L1] Did You run or modify PowerShell scripts ?
+2. [L2] Did You write PowerShell scripts for admin tasks used by others ?
+3. [L3] Did You write PowerShell modules or automate AD / M365 with PowerShell ?
+
+### Security / compliance
+- Category: security
+- Aliases: NIS2, ISO 27001, GDPR, endpoint protection, EDR, Bitdefender, firewall, patch management
+- Related: Networking, Bash / Linux
+1. [L1] Did You patch servers or manage access rights ?
+2. [L2] Did You manage antivirus / EDR or firewall rules ?
+3. [L3] Did You take part in a security audit or compliance project (ISO 27001, NIS2, GDPR) ?
+4. [L4] Did You lead security compliance or define security policies for a company ?
+
+### ML / LLM fundamentals
+- Category: AI
+- Aliases: machine learning, LLM, RAG, embeddings, AI evaluation, MLOps
+- Related: AI coding assistants, Python
+1. [L1] Can You explain LLM basics: tokens, context window, embeddings, temperature, hallucinations ?
+2. [L1] Do You understand ML basics: training vs inference, overfitting, train / test split ?
+3. [L2] Did You call an LLM API from code or build RAG / an agent (hobby counts) ?
+4. [L3] Did You evaluate AI outputs against a test set or criteria and iterate on prompts or models ?
+5. [L4] Did You train, fine-tune or deploy an ML model to production ?
+
+### Stakeholder communication
+- Category: soft skill
+- Aliases: client communication, requirements clarification, working with business users
+- Related: -
+1. [L1] Did You take part in meetings or calls with clients or business users ?
+2. [L2] Did You clarify requirements directly with clients or business users ?
+3. [L3] Did You regularly present results or explain technical decisions to non-developers ?
+
+### Oracle DB
+- Category: database
+- Aliases: Oracle, Oracle Database, PL/SQL
+- Related: SQL, PostgreSQL, Microsoft SQL Server
+1. [L1] Did You query an Oracle database ?
+2. [L2] Did You use Oracle as an application database in a real project ?
+3. [L3] Did You write PL/SQL procedures or analyse execution plans in Oracle ?
+4. [L4] Did You tune Oracle performance, partitioning or RAC / Data Guard ?
+
+### Load testing
+- Category: practice
+- Aliases: Gatling, k6, JMeter, Locust, performance testing
+- Related: Testing
+1. [L1] Did You run an existing load test ?
+2. [L2] Did You write load tests with Gatling, k6, JMeter or similar ?
+3. [L3] Did You find and fix a performance bottleneck based on load test results ?
+4. [L4] Did You define performance requirements and a load testing strategy for a system ?
+
+### Java EE / J2EE
+- Category: framework
+- Aliases: J2EE, Java EE, Jakarta EE, Servlets, JSP, Struts, JSF, EJB
+- Related: Spring Boot, Application servers
+1. [L1] Did You write Servlets or JSP pages ?
+2. [L2] Did You maintain a Java EE web application in production (Servlets / JSP, Struts or JSF) ?
+3. [L3] Did You work with EJB, JPA, JMS or CDI on an application server (WebLogic, WildFly, WebSphere) ?
+4. [L4] Did You migrate a Java EE / Struts application to Spring Boot or newer Jakarta EE ?
+
+### XML / XSLT
+- Category: data format
+- Aliases: XML, XSLT, XSD, XPath, JAXB
+- Related: SOAP
+1. [L1] Did You parse or generate XML in an application ?
+2. [L2] Did You write XSD schemas or XSLT transformations ?
+3. [L3] Did You maintain complex XSLT / XML processing in production ?
+
+### Google Workspace
+- Category: tooling
+- Aliases: G Suite, Google Admin, Google Drive, Gmail admin
+- Related: Microsoft 365 / IT support
+1. [L1] Did You manage sharing and permissions in Google Drive for a team ?
+2. [L2] Did You administer Google Workspace users, groups and settings ?
+3. [L3] Did You set up Google Workspace for an organization (domain, security policies, migration) ?
+
+### No-code automation
+- Category: integration
+- Aliases: Make, Integromat, Zapier, n8n, Power Automate
+- Related: REST API design
+1. [L1] Did You build a simple automation in Make, Zapier or n8n ?
+2. [L2] Did You run automations used by others in an organization ?
+3. [L3] Did You integrate several apps with error handling and monitoring of the scenarios ?
+
+### UX research
+- Category: design
+- Aliases: UX, usability testing, user research, information architecture
+- Related: -
+1. [L1] Did You collect feedback from users of an application ?
+2. [L2] Did You do user research or usability testing and change the product based on it ?
+3. [L3] Did You design information structure or user flows for a product ?
+
+### API testing tools
+- Category: tooling
+- Aliases: Postman, SoapUI, Bruno, Insomnia, REST Client
+- Related: REST API design, SOAP
+1. [L1] Did You send requests to an API with Postman, SoapUI, Bruno or similar ?
+2. [L2] Did You build shared collections with environments, variables or auth flows ?
+3. [L3] Did You automate API tests (Newman, SoapUI test suites) in CI ?
+
+### UML
+- Category: architecture
+- Aliases: UML, sequence diagram, Enterprise Architect, PlantUML
+- Related: Software architecture
+1. [L1] Did You read UML or sequence diagrams in specifications ?
+2. [L2] Did You draw sequence or component diagrams for a design ?
+3. [L3] Did You maintain a model in Enterprise Architect or similar for a team ?
