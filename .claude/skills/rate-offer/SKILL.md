@@ -46,7 +46,9 @@ Points as defined in *Rating offer* in `assignments/task1.md`:
   the offer says nothing about are not counted, not even into maximum.
 - Red flags by severity: `info` = 0, `warning` = -1, `alert` = -2 points.
   `info` flags are still listed in output, they only do not lower the score.
-- Total = (hard skill points + preference points - red flags) / (max hard skill points + max preference points), in %.
+- Missing *must have* (`no` or `unknown`) = -2 points on top of the 0 points, same weight as `alert`.
+  Partial and related *must have* get no penalty. Missing *nice to have* gets no penalty.
+- Total = (hard skill points + preference points - red flags - missing must haves) / (max hard skill points + max preference points), in %.
   Total can not go below 0 %.
 
 ## Clarification
@@ -85,6 +87,8 @@ Follow *Calculation and results presentation* in `assignments/task1.md`, in this
    for example `75 % (6 / 8)`.
    - *Hard skills fit* shows must have, nice to have and total.
    - *missed* rows = maximum points minus gained points, so partial match counts half as missed.
+   - *hard skills missed* row also shows the penalty, for example `36 % (5 / 14), 3 must have missing: -6`.
+   - *total* row shows the formula, for example `43 % ((9 + 6 - 1 - 6) / 21)`.
 4. Findings table: finding | category | severity | detail
    - missing skill - severity `required` (must have) or `optional` (nice to have),
      detail = required vs candidate level
@@ -94,6 +98,8 @@ Follow *Calculation and results presentation* in `assignments/task1.md`, in this
    - sort by category, inside category from most severe
 5. Final verdict - one line:
    - any violated `deal-breaker` -> **NOT SUITABLE** and which deal-breaker
-   - otherwise **SUITABLE**, total % and the most important finding to verify on interview
+   - total below 50 % -> **NOT SUITABLE**, total % and the main missing must haves
+   - total 50-69 % -> **BORDERLINE**, total % and what decides it (usually missing must haves to ask about)
+   - total 70 % and more -> **SUITABLE**, total % and the most important finding to verify on interview
 6. One line listing what was newly saved to profile.
-7. If verdict is **SUITABLE**, offer `/cover-letter` for this offer.
+7. If verdict is **SUITABLE** or **BORDERLINE**, offer `/cover-letter` for this offer.

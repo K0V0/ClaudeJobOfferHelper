@@ -210,6 +210,10 @@ Every candidate gets the same questions for the same technology, so profiles are
 2. [L2] Did You modify a pipeline (build, test, deploy steps) ?
 3. [L3] Did You create a pipeline from scratch ?
 4. [L4] Did You design release strategy (blue/green, canary, feature flags) ?
+5. [L3] Did You build or run staging / UAT / test environment used by QA team ?
+6. [L3] Did You package software for on-premises deployment at customers (Helm chart, images, air-gapped delivery) ?
+7. [L3] Did You add automated security checks to pipelines (image scanning, SAST, dependency scanning) ?
+8. [L4] Did You deploy or operate multi-tenant SaaS (one deployment, many customers) ?
 
 ### AWS
 - Category: cloud
@@ -495,6 +499,7 @@ Every candidate gets the same questions for the same technology, so profiles are
 2. [L2] Did You debug firewall, DNS, proxy or certificate problems between services ?
 3. [L3] Did You configure load balancers, ingress, VPN, network policies or subnets ?
 4. [L4] Did You design network topology or segmentation for a system ?
+5. [L2] Did You diagnose PKI / TLS problems (expired or untrusted certificate, wrong chain, truststore) ?
 
 ### Application servers
 - Category: operations
@@ -631,3 +636,127 @@ Every candidate gets the same questions for the same technology, so profiles are
 1. [L1] Did You read UML or sequence diagrams in specifications ?
 2. [L2] Did You draw sequence or component diagrams for a design ?
 3. [L3] Did You maintain a model in Enterprise Architect or similar for a team ?
+
+### Salesforce
+- Category: platform
+- Aliases: Salesforce, SFDC, Apex, SOQL, Lightning
+- Related: REST API design
+1. [L1] Did You configure objects, fields or flows in a Salesforce org ?
+2. [L2] Did You call Salesforce REST, Bulk or Metadata API from an application ?
+3. [L3] Did You write Apex code or SOQL queries in production ?
+4. [L4] Did You build a product or managed package on top of Salesforce ?
+
+### DLT / blockchain
+- Category: domain
+- Aliases: distributed ledger, Hyperledger Besu, Ethereum, smart contracts
+- Related: -
+1. [L1] Do You understand DLT principles (ledger, nodes, consensus, smart contracts) ?
+2. [L2] Did You run or deploy a blockchain node (Hyperledger Besu, Ethereum client) ?
+3. [L3] Did You write or deploy smart contracts ?
+4. [L4] Did You design a private DLT network (permissioning, consensus choice, node topology) ?
+
+### SonarQube
+- Category: code quality
+- Aliases: SonarCloud, SonarLint, static code analysis
+- Related: -
+1. [L1] Did You work in a project where SonarQube analysed the code ?
+2. [L2] Did You fix issues reported by SonarQube ?
+3. [L3] Did You set up SonarQube in CI (quality gates, rules) ?
+4. [L4] Did You define code quality rules or gates for a team or organisation ?
+
+### IntelliJ IDEA
+- Category: tooling
+- Aliases: IntelliJ, IDEA, JetBrains IDE
+- Related: Eclipse, VS Code
+1. [L1] Do You use IntelliJ IDEA for editing and running code ?
+2. [L2] Do You use its debugger and built-in refactorings ?
+3. [L3] Do You work efficiently with shortcuts, plugins, run configurations, database / HTTP tools ?
+4. [L4] Did You write IntelliJ plugins or set up shared IDE configuration for a team ?
+
+### Mobile Device Management
+- Category: operations
+- Aliases: MDM, SOTI MobiControl, Microsoft Intune, Android Enterprise, Workspace ONE, Jamf
+- Related: Microsoft 365 / IT support
+1. [L1] Did You work in an MDM console (device lookup, remote commands, logs) ?
+2. [L2] Did You configure policies, profiles or enrollment for managed devices ?
+3. [L3] Did You troubleshoot device fleet problems (failed enrollment, app deployment, rugged devices) ?
+4. [L4] Did You design MDM architecture or integrate MDM with other systems (APIs, reporting) ?
+
+### GraphQL
+- Category: API
+- Aliases: Apollo, graphql-java, DGS
+- Related: REST API design
+1. [L1] Did You call a GraphQL API as a client ?
+2. [L2] Did You build a GraphQL API (schema, resolvers) ?
+3. [L3] Did You solve N+1 / batching (DataLoader) or pagination in GraphQL ?
+4. [L4] Did You design a GraphQL schema for multiple clients or federation ?
+
+### BigQuery
+- Category: database
+- Aliases: Google BigQuery, GCP data warehouse
+- Related: SQL, Google Cloud
+1. [L1] Did You run queries in BigQuery ?
+2. [L2] Did You load or stream data into BigQuery from an application ?
+3. [L3] Did You optimise cost / partitioning of BigQuery tables ?
+
+### Ansible
+- Category: infrastructure as code
+- Aliases: Ansible playbooks, AWX, Ansible Tower
+- Related: Terraform, Bash / Linux
+1. [L1] Did You run Ansible playbooks in a project ?
+2. [L2] Did You write or maintain playbooks / roles for deployments ?
+3. [L3] Did You structure inventories, roles and vaults for multiple environments ?
+4. [L4] Did You design configuration management for a whole organisation ?
+
+### ETL / data modeling
+- Category: data
+- Aliases: data pipelines, ETL, ELT, data modelling, Airflow, Spark
+- Related: SQL, Kafka
+1. [L1] Did You design DB schemas / data models ?
+2. [L2] Did You build ETL / data pipelines between systems ?
+3. [L3] Did You handle incremental loads, data quality checks or reprocessing ?
+4. [L4] Did You design data platform or warehouse model (star schema, data vault) ?
+
+### SAST
+- Category: security
+- Aliases: Fortify, Checkmarx, Snyk Code, Semgrep, static application security testing
+- Related: SonarQube, Security / compliance
+1. [L1] Did You fix issues reported by Fortify, Checkmarx or similar ?
+2. [L2] Did You add a SAST scan to a CI pipeline ?
+3. [L3] Did You tune rules, triage false positives or define security gates ?
+
+### Node.js
+- Category: language
+- Aliases: Node, Express, NestJS, Fastify
+- Related: TypeScript
+1. [L1] Did You write a Node.js script or small service ?
+2. [L2] Did You build Node.js backend in production ?
+3. [L3] Did You use a large framework (Express, NestJS) with auth, validation and tests ?
+4. [L4] Did You debug Node.js performance (event loop, memory) in production ?
+
+### Go
+- Category: language
+- Aliases: Golang
+- Related: Java, C
+1. [L1] Did You write a Go program or small service ?
+2. [L2] Did You build Go backend or CLI in production ?
+3. [L3] Did You use goroutines and channels for concurrent processing in production ?
+4. [L4] Did You profile and tune Go services (pprof, GC, memory) ?
+
+### Consul
+- Category: service discovery
+- Aliases: HashiCorp Consul, service discovery, service mesh
+- Related: Kubernetes, HashiCorp Vault
+1. [L1] Did You register services or read config / service discovery from Consul ?
+2. [L2] Did You use Consul KV or health checks in an application (Spring Cloud Consul) ?
+3. [L3] Did You set up Consul agents / cluster or Consul Connect service mesh ?
+4. [L4] Did You operate Consul in production (ACLs, multi datacenter, upgrades) ?
+
+### HAProxy
+- Category: load balancer
+- Aliases: load balancer, reverse proxy
+- Related: Application servers (Nginx), Networking
+1. [L1] Did You work with a system behind HAProxy and read its logs / stats ?
+2. [L2] Did You write HAProxy configuration (frontends, backends, health checks, TLS) ?
+3. [L3] Did You troubleshoot HAProxy in production (timeouts, sticky sessions, failover) ?
+4. [L4] Did You design HA load balancing (keepalived / VRRP, zero downtime reloads) ?
