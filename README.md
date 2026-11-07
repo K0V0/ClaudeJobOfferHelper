@@ -8,19 +8,25 @@ Open this project in Claude Code and write anything - if You have no profile yet
 1. **Give me Your sources**
    - CV (file path or pasted text), LinkedIn PDF export, GitHub / GitLab profile, portfolio, certificates, ...
    - or `skip` and just list Your technologies
-2. **Answer a few questions per technology**
+2. **Tell me what job You are looking for**
+   - field (backend, frontend, devops, more of them for full stack), main stack and level You apply for
+   - it only filters offers, the questions and Your estimated level stay the same, so applying for
+     an easier job than You could get is fine
+3. **Answer a few questions per technology**
+   - core technologies of the field (Java, Spring Boot, TypeScript, Angular, SQL, Docker, Kubernetes, ...)
+     get 8-10 questions, adjacent ones (Kafka, Redis, Keycloak, SharePoint, ...) get 4-6
    - just click `Yes` / `No`, like `[Y/n]` in good old Linux and MS-DOS times, for example
      `Did You implement Your own Spring Boot starter module ? [Y/n]`
    - years, context and preferences are also clickable options, up to 4 questions on one screen
    - type `skip` into *Other* to skip technology, `done` to end interview, `/interview` continues later or adds a technology
    - result is saved to `profile/candidate-profile.md` - You can read and edit it any time
-3. **Show me the offer**
+4. **Show me the offer**
    - paste offer text or URL, or run `/rate-offer`
    - if offer needs something Your profile does not cover, I will ask a few clickable `Yes` / `No` questions first
      and remember answers for next offers
-4. **Results**
+5. **Results**
    - offer summary, match rating, red flags and final verdict
-5. **Cover letter**
+6. **Cover letter**
    - run `/cover-letter` after rating, or ask for cover letter, motivation letter or answer to application question
    - first time I ask for letters You wrote Yourself (ideally with the offers they were for), to learn Your style
    - tell me if the form asks something specific, like *Why you ?* or *How will you be useful for us ?*
