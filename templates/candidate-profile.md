@@ -99,7 +99,8 @@ soft *must haves*. Only facts candidate gave or confirmed.
 ## Writing style
 
 Filled by `/cover-letter` from candidate own letters. Samples are stored in `profile/writing-samples/`,
-generated letters in `profile/cover-letters/`.
+generated letters in offer folders `profile/offer-results/<offer>/cover-letter-*.md`.
+*Used in letters* column in *Stories* lists offer folder names.
 
 - Name for signature:
 - Contact in signature (e-mail, phone, LinkedIn, GitHub):

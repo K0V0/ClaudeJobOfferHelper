@@ -12,7 +12,8 @@ normal for a human reader and optimized for the ATS of the employer.
 ## Inputs
 
 - Offer - in this order:
-  1. offer rated by `/rate-offer` earlier in this conversation
+  1. offer rated by `/rate-offer` earlier in this conversation, or latest `rating-*.md` from its folder in
+     `profile/offer-results/` (see *Offer folder* in `/rate-offer`) when candidate names a company or offer rated before
   2. offer text or URL from argument - run `/rate-offer` first, letter needs its match, findings and company research
   3. nothing given - ask candidate to paste the offer
 - `profile/candidate-profile.md` - technologies, *Skill details*, *Preferences* and *Writing style*.
@@ -31,14 +32,14 @@ normal for a human reader and optimized for the ATS of the employer.
      for a non-technical reader, each as a how-you-work claim with one concrete fact behind it,
      tech details stay in the CV. Take facts from *Strengths and stories* in profile, match by
      *Offer phrases it answers*. If the section is empty, offer `/interview stories` before writing
-   - after saving the letter, add its file name into *Used in letters* of every story used
+   - after saving the letter, add its offer folder name into *Used in letters* of every story used
    - never mention anything from *Never mention in letters*
    - never describe exact situations from past work projects, keep them for interview, see
      *Keep stories for interview* in `templates/cover-letter.md`
    - `related` matches that are worth explaining honestly
    - preferences the offer meets - they are the real motivation, for *why us* type
-   - vary proof points: check letters in `profile/cover-letters/` and do not reuse a proof point
-     used in one of the last 3 letters, unless it is the only proof for a must have. If profile has
+   - vary proof points: check letters `profile/offer-results/*/cover-letter-*.md` and do not reuse a proof point
+     used in one of the last 3 letters (newest by date in file name), unless it is the only proof for a must have. If profile has
      no other proof for that must have, tell candidate and suggest adding projects with `/interview`
    - never mention missing skills, red flags, salary or anything from *Findings* as weakness
 4. Pick tone: style notes for this employer type, then general *Style notes*, then *Tone by employer type*.
@@ -98,7 +99,7 @@ Check both versions before showing them, mechanically, not from memory:
 - every claim is backed by profile, no invented project, number or skill
 - check every sentence against profile: no offer phrase presented as own experience, no wording stronger than the level, no added context or purpose
 - no exact situation from past work projects (incident, client internals, internal numbers), unless the form asks for it
-- no proof point repeated from the last 3 letters in `profile/cover-letters/` (except the only proof for a must have)
+- no proof point repeated from the last 3 letters in `profile/offer-results/*/cover-letter-*.md` (except the only proof for a must have)
 - length within limit, count characters if the form has a limit
 - greeting and closing match the chosen tone
 
@@ -112,8 +113,10 @@ Check both versions before showing them, mechanically, not from memory:
    Only keywords candidate matches. Add one row with matched must-haves missing in candidate CV, if CV is known.
 5. One line on what differs and when to use which, for example
    `Workday filters by keywords before anyone reads it, send ATS version. For e-mail to the CTO send normal one.`
-6. Save both versions into `profile/cover-letters/<yyyy-mm-dd>-<company>-<position>.md` with offer link
-   or title on top, and tell candidate the path.
+6. Save both versions into the offer folder as `cover-letter-<yyyy-mm-dd>.md` (see *Offer folder* in
+   `/rate-offer`, create the folder with `offer.md` if offer was not rated), with offer link or title on top.
+   Never overwrite an earlier letter, second letter on the same day gets suffix `-2`. Tell candidate the path.
+   Letter not tied to any offer (universal letter) goes to `profile/offer-results/_universal/cover-letter-<language>.md`.
 7. Last line: "If You edit the letter before sending, paste the final version and I will save it as Your
-   writing sample." When candidate does, save it as sample with *Written by* = `finalized by candidate`
-   and update *Style notes*.
+   writing sample." When candidate does, save it as sample with *Written by* = `finalized by candidate`,
+   also as `cover-letter-<yyyy-mm-dd>-sent.md` in the offer folder, and update *Style notes*.
