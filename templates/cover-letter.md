@@ -77,7 +77,7 @@ done in `/rate-offer`.
 | employer type | formality | greeting | what to stress | length |
 | ------------- | --------- | -------- | -------------- | ------ |
 | state office; public sector; university | formal, full sentences, no slang | Dear Sir or Madam / Vážená paní, vážený pane | stability, following processes, documentation, long-term interest, legal domain if any | 250-350 words |
-| bank; insurance; large corporation | formal but direct | Dear Hiring Manager / name if known | reliability, security, regulated environment, delivering in large teams | 200-300 words |
+| bank; insurance; large corporation | formal but direct, no colloquial words (`baví ma`, `lákavé`, `super`), use `zaujíma ma`, `mám skúsenosti`, `oceňujem` | Dear Hiring Manager / name if known | reliability, security, regulated environment, delivering in large teams | 200-300 words |
 | recruiting agency; bodyshop; consultancy | neutral, business like | Hello / Dobrý den | must-have match, availability, contract type, communication with customer | 120-200 words |
 | product company | neutral, friendly | Hello + name if known | product and domain interest, ownership of features, quality | 150-250 words |
 | startup | informal, first names | Hi + name | what candidate built alone, speed, breadth, why this product | 100-200 words |
@@ -97,6 +97,17 @@ structure changes a lot.
 | other question | as asked | answer the question in the first sentence, then proof |
 
 If form has character or word limit, respect it and show the count next to the letter.
+
+### What non-technical reader wants to hear
+
+Recruiter reads these questions as business questions. Answer in outcomes, each backed by one fact from
+profile, technologies only as names. A general letter can answer them too, with one plain paragraph
+on what the company gets, instead of a separately tailored answer.
+
+| prompt | reader wants to hear |
+| ------ | -------------------- |
+| How will you be useful / move us forward ? / Jak mohu vaši firmu posunout vpřed? | what changes for the company: less manual work and saved time, fewer outages and lower risk, working independently on own area, knowledge staying in the team (documentation, handover), quick start |
+| Why you ? / Dejte firmě vědět, proč by si měla vybrat právě vás | why you over other candidates with similar CV: you match what they need most (with proof), one thing that makes you different (rare combination, own projects in production), reliability and attitude backed by a fact, motivation for this exact role so you will stay |
 
 ## ATS optimization
 

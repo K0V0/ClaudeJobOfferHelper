@@ -3,6 +3,16 @@
 Knowledge base about the candidate, filled by agent during `/interview` and `/rate-offer`.
 Candidate can edit this file manually at any time.
 
+## Job target
+
+What candidate is looking for. Asked at first run. It only tells which offers fit, it never changes
+calibration questions or the level estimated by agent (a senior may look for an easier job on purpose).
+
+- Target field(s): <!-- backend / frontend / devops, more allowed -->
+- Role complexity: <!-- from Role competence complexity table in templates/constants.md -->
+- Core stack: <!-- main language and framework, for example Java + Spring Boot -->
+- Target level: <!-- junior / medior / senior / lead from Seniority table -->
+
 ## Technologies
 
 Levels are defined in `templates/technologies.md`.
@@ -34,8 +44,9 @@ Levels and signals are defined in *Seniority table* in `templates/constants.md`.
 
 - Self-assessed level:
 - Level estimated by agent from sources and interview:
-- Target level (what candidate applies for):
 - Education:
+
+Target level is in *Job target*.
 
 ## Preferences
 
@@ -55,7 +66,7 @@ Weight of every preference, used for preference match rating:
 | Contract type | HPP / IČO / both | | |
 | Salary - survival minimum | what candidate needs to survive, below it offer is always deal-breaker | | deal-breaker |
 | Salary - expected | what candidate expects and wants | | |
-| Preferred role complexity | choose option(s) from *Role competence complexity table* | | |
+| Preferred role complexity | prefilled from *Job target*, candidate can add more options from *Role competence complexity table* | | |
 | Wanted responsibilities | choose option(s) from *Responsibilities merge table* | | |
 | Unwanted responsibilities | choose option(s) from *Responsibilities merge table* | | |
 | Preferred domains | | | |

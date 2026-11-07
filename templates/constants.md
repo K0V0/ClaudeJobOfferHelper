@@ -17,6 +17,17 @@ Some basic settings and guidelines for agent to work
 | IT department | full-fullstack plus you have manager abilities and want to lead the project / team |
 | Founder | IT department skills plus analytic skills plus product owner skills |
 
+### Job target field to complexity
+
+Candidate picks field(s) in *Job target* of the profile, complexity follows from them.
+
+| job type | fields | complexity |
+| -------- | ------ | ---------- |
+| Backend / Frontend / DevOps | one field | single (or with overlap, if candidate wants to touch other field) |
+| Full stack | backend + frontend | mutlirole |
+| Backend + DevOps, Frontend + DevOps | two fields with devops | mutlirole |
+| Full-full stack | backend + frontend + devops | full-fullstack |
+
 ## Responsibilities merge table
 
 - chosen multiple that fits

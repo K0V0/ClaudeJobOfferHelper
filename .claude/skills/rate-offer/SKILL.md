@@ -25,7 +25,10 @@ argument-hint: "[offer text or URL]"
    - only related technology in profile - one level lower, max level 2, mark as `related`
    - nothing in profile - **unclear**
 4. Determine offer seniority using *Seniority table* in `templates/constants.md` - from responsibilities
-   and requirements, not only from title. Compare with candidate target level.
+   and requirements, not only from title. Compare with candidate target level from *Job target*.
+   Also determine offer field(s) (backend / frontend / devops) and core stack from its *core* requirements
+   (Tier in catalog) and compare with *Job target* fields and core stack. This is informative only,
+   scoring of role fit stays in *Preferred role complexity* preference.
 5. Check offer against all sections of *Red flags table*. Posting date only from what the page states
    (text or structured data), never decoded from offer IDs or URLs - those are guesses. If candidate target level is *junior*, explain
    every red flag in plain words: what it means in practice and why accepting it hurts candidate and market.
@@ -46,7 +49,9 @@ Points as defined in *Rating offer* in `assignments/task1.md`:
   the offer says nothing about are not counted, not even into maximum.
 - Red flags by severity: `info` = 0, `warning` = -1, `alert` = -2 points.
   `info` flags are still listed in output, they only do not lower the score.
-- Total = (hard skill points + preference points - red flags) / (max hard skill points + max preference points), in %.
+- Missing *must have* (`no` or `unknown`) = -2 points on top of the 0 points, same weight as `alert`.
+  Partial and related *must have* get no penalty. Missing *nice to have* gets no penalty.
+- Total = (hard skill points + preference points - red flags - missing must haves) / (max hard skill points + max preference points), in %.
   Total can not go below 0 %.
 
 ## Clarification
@@ -65,7 +70,9 @@ Rules:
   for yes/no questions, option lists for years, context and preferences. Max 4 questions per call,
   max 2 calls per offer (8 questions). Prioritise *must have* requirements. `header` names the requirement.
 - Unknown technology - ask the common questions plus its calibration questions (create them in catalog
-  if missing, as in `/interview`).
+  if missing, with Tier and question count as in `/interview`). Core technology has 8-10 questions, which
+  can exceed the 8 question limit per offer: then ask the must have core technology fully and leave other
+  unclear requirements `unknown`, offering `/interview <technology>` for them.
 - Candidate can type `skip` into *Other* - then treat requirement as not met and mark it `unknown`.
 - If `AskUserQuestion` is not available, ask in one numbered message answered like `1: y 2: n`.
 - Save every answer before writing the rating:
@@ -79,12 +86,16 @@ Rules:
 
 Follow *Calculation and results presentation* in `assignments/task1.md`, in this order:
 
-1. Summary part from `assignments/task1.md`, including seniority: offer level vs candidate target level.
+1. Summary part from `assignments/task1.md`, including seniority: offer level vs candidate target level,
+   and field: offer field and core stack vs candidate *Job target*, for example
+   `backend, Java + Spring Boot (target: backend, Java + Spring Boot)`.
 2. Requirement table: requirement | must / nice | required level | candidate level | match (yes / partial / no / unknown).
 3. Statistics table, exactly with rows from `assignments/task1.md`. Show points next to percentage,
    for example `75 % (6 / 8)`.
    - *Hard skills fit* shows must have, nice to have and total.
    - *missed* rows = maximum points minus gained points, so partial match counts half as missed.
+   - *hard skills missed* row also shows the penalty, for example `36 % (5 / 14), 3 must have missing: -6`.
+   - *total* row shows the formula, for example `43 % ((9 + 6 - 1 - 6) / 21)`.
 4. Findings table: finding | category | severity | detail
    - missing skill - severity `required` (must have) or `optional` (nice to have),
      detail = required vs candidate level
@@ -94,6 +105,8 @@ Follow *Calculation and results presentation* in `assignments/task1.md`, in this
    - sort by category, inside category from most severe
 5. Final verdict - one line:
    - any violated `deal-breaker` -> **NOT SUITABLE** and which deal-breaker
-   - otherwise **SUITABLE**, total % and the most important finding to verify on interview
+   - total below 50 % -> **NOT SUITABLE**, total % and the main missing must haves
+   - total 50-69 % -> **BORDERLINE**, total % and what decides it (usually missing must haves to ask about)
+   - total 70 % and more -> **SUITABLE**, total % and the most important finding to verify on interview
 6. One line listing what was newly saved to profile.
-7. If verdict is **SUITABLE**, offer `/cover-letter` for this offer.
+7. If verdict is **SUITABLE** or **BORDERLINE**, offer `/cover-letter` for this offer.
