@@ -26,9 +26,12 @@ Open this project in Claude Code and write anything - if You have no profile yet
      and remember answers for next offers
 5. **Results**
    - offer summary, match rating, red flags and final verdict
+   - saved to `profile/offer-results/<date>-<company>-<position>/` together with the offer text
+   - after interview or recruiter call say *rate it again* (or `/rate-offer <company>`) and tell what You learned -
+     You get a new rating with changes against the old one, old rating stays
 6. **Cover letter**
    - run `/cover-letter` after rating, or ask for cover letter, motivation letter or answer to application question
    - first time I ask for letters You wrote Yourself (ideally with the offers they were for), to learn Your style
    - tell me if the form asks something specific, like *Why you ?* or *How will you be useful for us ?*
    - You get two versions to compare: normal one for a human and one optimized for the ATS the company uses
-   - letters are saved to `profile/cover-letters/`, paste back Your final edited version and it becomes Your writing sample
+   - letters are saved to the offer folder in `profile/offer-results/`, paste back Your final edited version and it becomes Your writing sample

@@ -1,7 +1,7 @@
 ---
 name: rate-offer
 description: Summarize and rate a job offer against candidate profile, ask candidate about unclear skills and save answers for next offers. Use when candidate pastes a job offer or a link to one.
-argument-hint: "[offer text or URL]"
+argument-hint: "[offer text, URL, or company / offer folder to reevaluate]"
 ---
 
 # Rate job offer
@@ -9,6 +9,8 @@ argument-hint: "[offer text or URL]"
 ## Inputs
 
 - Offer text or URL (fetch it if URL is given). If nothing given, ask candidate to paste the offer.
+- Existing offer folder in `profile/offer-results/` (see *Offer folder*) - if this offer was rated before,
+  this is a *Reevaluation*.
 - `profile/candidate-profile.md` - if missing, tell candidate to run `/interview` first, but offer
   to continue with only questions needed for this offer.
 - `templates/technologies.md` - aliases, related technologies, levels.
@@ -37,6 +39,48 @@ argument-hint: "[offer text or URL]"
 7. Run *Clarification* below before computing final rating.
 8. Compute points as described in *Scoring* below.
 9. Produce summary and rating as described in `assignments/task1.md`.
+
+## Offer folder
+
+Every rated offer has its own folder, shared with `/cover-letter`:
+
+```
+profile/offer-results/<yyyy-mm-dd>-<company>-<position>/
+  offer.md                       offer link and full text as it was rated
+  rating-<yyyy-mm-dd>.md         one file per rating, the first one and every reevaluation
+  cover-letter-<yyyy-mm-dd>.md   one file per generated letter (written by /cover-letter)
+```
+
+- Folder name: date of the first rating, company and position as lowercase slug, for example
+  `2026-11-03-teamit-java-developer`. Recruiting agency with known end client: `<agency>-<client>-<position>`.
+- Find existing folder by offer URL in `offer.md` first, then by company and position (ignore the date).
+  If unsure whether it is the same offer, ask candidate.
+- Never overwrite `rating-*.md` or `cover-letter-*.md`. Second file on the same day gets suffix `-2`, `-3`.
+- `offer.md` is written once. If the offer text changed since (new salary, changed requirements), save the new
+  text as `offer-<yyyy-mm-dd>.md` next to it.
+- Rating file contains: offer title and link, date, `Type: first rating` or `Type: reevaluation of <previous file>`,
+  then everything from *Output* below, as shown to candidate, plus the clarifications asked and answered for this offer.
+- Batch overviews of many offers stay in `profile/offer-batches/`. When an offer from a batch gets a full rating,
+  it gets its own folder.
+
+## Reevaluation
+
+Offer is rated again, usually after an interview or recruiter call. Triggered when candidate asks for it
+(`/rate-offer <company>`, "rate it again", "after interview ...") or pastes an offer that already has a folder.
+
+1. Read the latest `rating-*.md` and `offer.md` of the offer. Tell candidate in one line when it was rated
+   and with what result, for example `Rated 2026-11-03: 58 % BORDERLINE.`
+2. Ask what is new, with `AskUserQuestion` where possible: answers to interview questions from the findings
+   (salary range, work mode, end client, team, on call, ...), new or changed requirements, changed candidate preferences.
+   *Other* for free text. Do not ask what candidate already told in this conversation.
+3. Rate again with all *Steps*, using the new facts:
+   - a red flag answered well on interview is listed as `resolved` with the answer and gives no minus points,
+     answered badly keeps or raises its severity
+   - unknown preference that is now known is counted, met or violated
+   - new facts about candidate skills go to profile as usual (*Learned from offers*)
+4. Write a new `rating-<yyyy-mm-dd>.md`, never change the old one. Add a section *Changes since previous rating*:
+   previous and new total and verdict, and a table: item | before | now | source (interview, recruiter, new offer text).
+5. In *Output* show *Changes since previous rating* right after the statistics table.
 
 ## Scoring
 
@@ -108,5 +152,6 @@ Follow *Calculation and results presentation* in `assignments/task1.md`, in this
    - total below 50 % -> **NOT SUITABLE**, total % and the main missing must haves
    - total 50-69 % -> **BORDERLINE**, total % and what decides it (usually missing must haves to ask about)
    - total 70 % and more -> **SUITABLE**, total % and the most important finding to verify on interview
-6. One line listing what was newly saved to profile.
+6. One line listing what was newly saved to profile, and the path of the saved rating file
+   (see *Offer folder*). Save it before showing the output.
 7. If verdict is **SUITABLE** or **BORDERLINE**, offer `/cover-letter` for this offer.
