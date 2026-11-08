@@ -1,6 +1,6 @@
 # Candidate profile
 
-Knowledge base about the candidate, filled by agent during `/interview` and `/rate-offer`.
+Knowledge base about the candidate, filled by agent during `/job-offer-helper:interview` and `/job-offer-helper:rate-offer`.
 Candidate can edit this file manually at any time.
 
 ## Job target
@@ -75,7 +75,7 @@ Weight of every preference, used for preference match rating:
 
 ## Strengths and stories
 
-Filled by `/interview` (*Strengths and stories*), used by `/cover-letter` for *why hire me* answers and
+Filled by `/job-offer-helper:interview` (*Strengths and stories*), used by `/job-offer-helper:cover-letter` for *why hire me* answers and
 soft *must haves*. Only facts candidate gave or confirmed.
 
 ### Strengths
@@ -98,8 +98,8 @@ soft *must haves*. Only facts candidate gave or confirmed.
 
 ## Writing style
 
-Filled by `/cover-letter` from candidate own letters. Samples are stored in `profile/writing-samples/`,
-generated letters in offer folders `profile/offer-results/<offer>/cover-letter-*.md`.
+Filled by `/job-offer-helper:cover-letter` from candidate own letters. Samples are stored in `~/JobOfferHelper/writing-samples/`,
+generated letters in offer folders `~/JobOfferHelper/offer-results/<offer>/cover-letter-*.md`.
 *Used in letters* column in *Stories* lists offer folder names.
 
 - Name for signature:

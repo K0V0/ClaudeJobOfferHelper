@@ -1,0 +1,13 @@
+{
+  "name": "k0v0",
+  "owner": {
+    "name": "K0V0"
+  },
+  "plugins": [
+    {
+      "name": "job-offer-helper",
+      "source": "./",
+      "description": "Rate job offers against your skills, spot red flags, save the original offer and write cover letters in your own style."
+    }
+  ]
+}

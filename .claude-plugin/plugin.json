@@ -1,0 +1,8 @@
+{
+  "name": "job-offer-helper",
+  "description": "Rate job offers against your skills, spot red flags, save the original offer and write cover letters in your own style.",
+  "author": {
+    "name": "K0V0"
+  },
+  "repository": "https://github.com/K0V0/ClaudeJobOfferHelper"
+}

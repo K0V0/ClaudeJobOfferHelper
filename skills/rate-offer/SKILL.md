@@ -2,21 +2,29 @@
 name: rate-offer
 description: Summarize and rate a job offer against candidate profile, ask candidate about unclear skills and save answers for next offers. Use when candidate pastes a job offer or a link to one.
 argument-hint: "[offer text, URL, or company / offer folder to reevaluate]"
+allowed-tools: Read(~/.claude/plugins/**) Read(~/JobOfferHelper/**) Edit(~/JobOfferHelper/**) Bash(save-offer *)
 ---
 
 # Rate job offer
+
+## Data folder
+
+Everything about the candidate lives in `~/JobOfferHelper/` in the home directory of candidate (on Windows
+`C:\Users\<name>\JobOfferHelper`). Use the full path with file tools and create the folder when it is missing.
+Never write into `${CLAUDE_PLUGIN_ROOT}`, the plugin folder is replaced on every update.
 
 ## Inputs
 
 - Offer text or URL. URL is saved by script and rated from the saved `offer.md`, see *Saving the offer*.
   If nothing given, ask candidate to paste the offer.
-- Existing offer folder in `profile/offer-results/` (see *Offer folder*) - if this offer was rated before,
+- Existing offer folder in `~/JobOfferHelper/offer-results/` (see *Offer folder*) - if this offer was rated before,
   this is a *Reevaluation*.
-- `profile/candidate-profile.md` - if missing, tell candidate to run `/interview` first, but offer
+- `~/JobOfferHelper/candidate-profile.md` - if missing, tell candidate to run `/job-offer-helper:interview` first, but offer
   to continue with only questions needed for this offer.
-- `templates/technologies.md` - aliases, related technologies, levels.
-- `templates/constants.md` - role complexity and responsibilities tables.
-- `assignments/task1.md` - required parts of summary and rating.
+- `${CLAUDE_PLUGIN_ROOT}/templates/technologies.md` and, when it exists, `~/JobOfferHelper/technologies-added.md` (together the *catalog*) -
+  aliases, related technologies, levels.
+- `${CLAUDE_PLUGIN_ROOT}/templates/constants.md` - role complexity and responsibilities tables.
+- `${CLAUDE_PLUGIN_ROOT}/assignments/task1.md` - required parts of summary and rating.
 
 ## Steps
 
@@ -27,7 +35,7 @@ argument-hint: "[offer text, URL, or company / offer folder to reevaluate]"
    - exact technology in profile - use its level
    - only related technology in profile - one level lower, max level 2, mark as `related`
    - nothing in profile - **unclear**
-4. Determine offer seniority using *Seniority table* in `templates/constants.md` - from responsibilities
+4. Determine offer seniority using *Seniority table* in `${CLAUDE_PLUGIN_ROOT}/templates/constants.md` - from responsibilities
    and requirements, not only from title. Compare with candidate target level from *Job target*.
    Also determine offer field(s) (backend / frontend / devops) and core stack from its *core* requirements
    (Tier in catalog) and compare with *Job target* fields and core stack. This is informative only,
@@ -39,18 +47,18 @@ argument-hint: "[offer text, URL, or company / offer folder to reevaluate]"
    If offer does not say anything about a preference, count it as unknown, not as violated.
 7. Run *Clarification* below before computing final rating.
 8. Compute points as described in *Scoring* below.
-9. Produce summary and rating as described in `assignments/task1.md`.
+9. Produce summary and rating as described in `${CLAUDE_PLUGIN_ROOT}/assignments/task1.md`.
 
 ## Offer folder
 
-Every rated offer has its own folder, shared with `/cover-letter`:
+Every rated offer has its own folder, shared with `/job-offer-helper:cover-letter`:
 
 ```
-profile/offer-results/<yyyy-mm-dd>-<company>-<position>/
+~/JobOfferHelper/offer-results/<yyyy-mm-dd>-<company>-<position>/
   offer.md                       offer link and original text, word for word
   offer-page.pdf                 printed offer page
   rating-<yyyy-mm-dd>.md         one file per rating, the first one and every reevaluation
-  cover-letter-<yyyy-mm-dd>.md   one file per generated letter (written by /cover-letter)
+  cover-letter-<yyyy-mm-dd>.md   one file per generated letter (written by /job-offer-helper:cover-letter)
 ```
 
 - Folder name: date of the first rating, company and position as lowercase slug, for example
@@ -62,7 +70,7 @@ profile/offer-results/<yyyy-mm-dd>-<company>-<position>/
   text as `offer-<yyyy-mm-dd>.md` next to it. Printed page of changed offer is `offer-page-<yyyy-mm-dd>.pdf`.
 - Rating file contains: offer title and link, date, `Type: first rating` or `Type: reevaluation of <previous file>`,
   then everything from *Output* below, as shown to candidate, plus the clarifications asked and answered for this offer.
-- Batch overviews of many offers stay in `profile/offer-batches/`. When an offer from a batch gets a full rating,
+- Batch overviews of many offers stay in `~/JobOfferHelper/offer-batches/`. When an offer from a batch gets a full rating,
   it gets its own folder.
 
 ### Saving the offer
@@ -70,23 +78,22 @@ profile/offer-results/<yyyy-mm-dd>-<company>-<position>/
 Offers disappear from the web, so the original is saved before rating. `offer.md` is the original word for word,
 never summarized, shortened, translated or retyped from memory.
 
-- URL: run `python3 scripts/save_offer.py <url>` (add `--folder <path>` if the folder is already known). It finds the
+- URL: run `save-offer <url>` (add `--folder <path>` if the folder is already known). It finds the
   folder by link or creates a new one, writes `offer.md` and `offer-page.pdf`, and prints their names. Then read `offer.md`.
   Do not fetch the URL or read page source yourself, that is what the script saves tokens on.
-  On Windows the command is `python` or `py` instead of `python3`, use the one that exists.
 - Recruiting agency with known end client: rename the created folder as described above.
 - Script prints `extractor: generic` (portal without own extractor): check that `offer.md` really is the offer. If it is
-  not, or the portal comes back often, look at the page once and add `scripts/<portal>/extract.py` with `HOSTS` and
-  `extract(soup)`, the existing portals are examples. Portal folder name is its domain with `_`, for example `jobs_cz`.
+  not, or the portal comes back often, look at the page once and add `~/JobOfferHelper/portals/<portal>/extract.py` with `HOSTS` and
+  `extract(soup)`, `${CLAUDE_PLUGIN_ROOT}/scripts/<portal>/` has examples. Portal folder name is its domain with `_`, for example `jobs_cz`.
 - Script fails (exit code 2, nothing written, or Python or its libraries are missing), `pdf: failed`, or candidate pasted the text: ask candidate to paste the full
   offer if it is not pasted yet and write it to `offer.md` unchanged: `# <title>`, `- Link: <url>`, `- Saved: <date>`,
-  `## Original text`, then the text. With a URL also try `python3 scripts/save_offer.py <url> --folder <path> --pdf-only`.
+  `## Original text`, then the text. With a URL also try `save-offer <url> --folder <path> --pdf-only`.
   Tell candidate in one line when there is no PDF.
 
 ## Reevaluation
 
 Offer is rated again, usually after an interview or recruiter call. Triggered when candidate asks for it
-(`/rate-offer <company>`, "rate it again", "after interview ...") or pastes an offer that already has a folder.
+(`/job-offer-helper:rate-offer <company>`, "rate it again", "after interview ...") or pastes an offer that already has a folder.
 
 1. Read the latest `rating-*.md` and `offer.md` of the offer. Tell candidate in one line when it was rated
    and with what result, for example `Rated 2026-11-03: 58 % BORDERLINE.`
@@ -104,7 +111,7 @@ Offer is rated again, usually after an interview or recruiter call. Triggered wh
 
 ## Scoring
 
-Points as defined in *Rating offer* in `assignments/task1.md`:
+Points as defined in *Rating offer* in `${CLAUDE_PLUGIN_ROOT}/assignments/task1.md`:
 
 - Hard skills: every requirement where candidate level >= required level = 1 point.
   `partial` (one level below required) and `related` = 0.5 point, `no` and `unknown` = 0.
@@ -130,31 +137,31 @@ Ask candidate when profile can not answer what offer requires. Typical cases:
 
 Rules:
 
-- Ask clarifications with `AskUserQuestion` tool, same way as in `/interview`: single select `Yes` / `No`
+- Ask clarifications with `AskUserQuestion` tool, same way as in `/job-offer-helper:interview`: single select `Yes` / `No`
   for yes/no questions, option lists for years, context and preferences. Max 4 questions per call,
   max 2 calls per offer (8 questions). Prioritise *must have* requirements. `header` names the requirement.
-- Unknown technology - ask the common questions plus its calibration questions (create them in catalog
-  if missing, with Tier and question count as in `/interview`). Core technology has 8-10 questions, which
+- Unknown technology - ask the common questions plus its calibration questions (create them in `~/JobOfferHelper/technologies-added.md`
+  if missing, with Tier and question count as in `/job-offer-helper:interview`). Core technology has 8-10 questions, which
   can exceed the 8 question limit per offer: then ask the must have core technology fully and leave other
-  unclear requirements `unknown`, offering `/interview <technology>` for them.
+  unclear requirements `unknown`, offering `/job-offer-helper:interview <technology>` for them.
 - Candidate can type `skip` into *Other* - then treat requirement as not met and mark it `unknown`.
 - If `AskUserQuestion` is not available, ask in one numbered message answered like `1: y 2: n`.
 - Save every answer before writing the rating:
   - new or changed technology - update *Technologies* table and *Skill details*
-  - new question that is useful for other candidates - append it to that technology in
-    `templates/technologies.md` with proper level tag
+  - new question that is useful for other candidates - append it under the name of that technology in
+    `~/JobOfferHelper/technologies-added.md` with proper level tag
   - always add one row into *Learned from offers* (date, company / position, question, answer, where saved)
 - Never ask again what is already in *Learned from offers* or *Skill details*.
 
 ## Output
 
-Follow *Calculation and results presentation* in `assignments/task1.md`, in this order:
+Follow *Calculation and results presentation* in `${CLAUDE_PLUGIN_ROOT}/assignments/task1.md`, in this order:
 
-1. Summary part from `assignments/task1.md`, including seniority: offer level vs candidate target level,
+1. Summary part from `${CLAUDE_PLUGIN_ROOT}/assignments/task1.md`, including seniority: offer level vs candidate target level,
    and field: offer field and core stack vs candidate *Job target*, for example
    `backend, Java + Spring Boot (target: backend, Java + Spring Boot)`.
 2. Requirement table: requirement | must / nice | required level | candidate level | match (yes / partial / no / unknown).
-3. Statistics table, exactly with rows from `assignments/task1.md`. Show points next to percentage,
+3. Statistics table, exactly with rows from `${CLAUDE_PLUGIN_ROOT}/assignments/task1.md`. Show points next to percentage,
    for example `75 % (6 / 8)`.
    - *Hard skills fit* shows must have, nice to have and total.
    - *missed* rows = maximum points minus gained points, so partial match counts half as missed.
@@ -174,4 +181,4 @@ Follow *Calculation and results presentation* in `assignments/task1.md`, in this
    - total 70 % and more -> **SUITABLE**, total % and the most important finding to verify on interview
 6. One line listing what was newly saved to profile, and the path of the saved rating file
    (see *Offer folder*). Save it before showing the output.
-7. If verdict is **SUITABLE** or **BORDERLINE**, offer `/cover-letter` for this offer.
+7. If verdict is **SUITABLE** or **BORDERLINE**, offer `/job-offer-helper:cover-letter` for this offer.
