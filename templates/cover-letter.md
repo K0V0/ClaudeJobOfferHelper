@@ -1,7 +1,7 @@
 # Cover letter rules
 
-Static rules for `/cover-letter`. Candidate style learned from samples is in *Writing style* section of
-`profile/candidate-profile.md` and has priority over *Tone by employer type* below.
+Static rules for `/job-offer-helper:cover-letter`. Candidate style learned from samples is in *Writing style* section of
+`~/JobOfferHelper/candidate-profile.md` and has priority over *Tone by employer type* below.
 
 ## Punctuation and AI cliché
 
@@ -72,7 +72,7 @@ where candidate tells them in person with context.
 ## Tone by employer type
 
 Used when candidate has no sample for this employer type. Detect type from offer and company research
-done in `/rate-offer`.
+done in `/job-offer-helper:rate-offer`.
 
 | employer type | formality | greeting | what to stress | length |
 | ------------- | --------- | -------- | -------------- | ------ |

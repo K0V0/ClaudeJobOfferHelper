@@ -1,17 +1,24 @@
 ---
 name: interview
-description: Interview the candidate about technologies, skills and preferences and save answers into profile/candidate-profile.md. Use when candidate runs the app first time, wants to add a technology, or says profile is outdated.
+description: Interview the candidate about technologies, skills and preferences and save answers into candidate profile. Use when candidate runs the app first time, wants to add a technology, or says profile is outdated.
 argument-hint: "[technology to add or update | stories]"
+allowed-tools: Read(~/.claude/plugins/**) Read(~/JobOfferHelper/**) Edit(~/JobOfferHelper/**)
 ---
 
 # Candidate interview
 
-Goal is to fill `profile/candidate-profile.md` with comparable knowledge levels, using as few questions as possible.
+Goal is to fill `~/JobOfferHelper/candidate-profile.md` with comparable knowledge levels, using as few questions as possible.
+
+## Data folder
+
+Everything about the candidate lives in `~/JobOfferHelper/` in the home directory of candidate (on Windows
+`C:\Users\<name>\JobOfferHelper`). Use the full path with file tools and create the folder when it is missing.
+Never write into `${CLAUDE_PLUGIN_ROOT}`, the plugin folder is replaced on every update.
 
 ## Before start
 
-1. If `profile/candidate-profile.md` does not exist, copy `templates/candidate-profile.md` there.
-2. Read the profile and `templates/technologies.md`.
+1. If `~/JobOfferHelper/candidate-profile.md` does not exist, copy `${CLAUDE_PLUGIN_ROOT}/templates/candidate-profile.md` there.
+2. Read the profile and the catalog: `${CLAUDE_PLUGIN_ROOT}/templates/technologies.md` and, when it exists, `~/JobOfferHelper/technologies-added.md`.
 3. If argument with technology was given, go straight to *Technology questions* for that technology only.
    If argument is `stories`, go straight to *Strengths and stories*.
 
@@ -32,9 +39,9 @@ From the sources:
 
 1. Extract technologies, years and last usage, roles, domains and preferences. Prefill those columns,
    but still ask calibration questions - sources do not tell the level.
-2. Technologies not in `templates/technologies.md` handle the same way as during offer review:
+2. Technologies not in catalog handle the same way as during offer review:
    decide its Tier (see *Tier* in catalog), write calibration questions in catalog style (8-10 for core,
-   4-6 for adjacent), append the technology to *Added by agent* section and ask the questions
+   4-6 for adjacent), append the technology to `~/JobOfferHelper/technologies-added.md` and ask the questions
    in *Technology questions* like for any other technology.
 3. Show extracted list (mark newly added catalog entries as `new`) and ask candidate to add missing
    or remove wrong items.
@@ -56,7 +63,7 @@ unless candidate asks to update it. Ask with `AskUserQuestion`, one call:
 
 Save to *Job target*:
 
-- fields as picked, and role complexity from *Job target field to complexity* in `templates/constants.md`
+- fields as picked, and role complexity from *Job target field to complexity* in `${CLAUDE_PLUGIN_ROOT}/templates/constants.md`
   (backend + frontend = full stack = `mutlirole`, all three = full-fullstack). Copy complexity also into
   *Preferred role complexity* value in *Preferences*, its weight is asked later in *Preferences*.
 - core stack and target level as answered.
@@ -74,7 +81,7 @@ Go one technology at a time, most used first.
 2. If it is not in catalog, decide its Tier (see *Tier* in catalog) and write questions in the same style
    (yes/no, "Did You ...", level tags L1-L4, concrete practical experience, not theory): 8-10 for core
    with at least 2 per level, 4-6 for adjacent. Append the technology with its Tier line to
-   *Added by agent* section of `templates/technologies.md`.
+   `~/JobOfferHelper/technologies-added.md`.
 3. Ask all calibration questions of the technology, always. Core technology has 8-10 of them and they are
    asked even when candidate answers *no* on lower levels - profiles must stay comparable. Tier does not
    depend on candidate *Job target*, a frontend candidate gets all 10 Kubernetes questions if they use it.
@@ -104,7 +111,7 @@ Go one technology at a time, most used first.
 
 After technologies, fill *Seniority* and *Preferences* sections of profile with `AskUserQuestion`.
 
-- Seniority: ask self-assessed level with options from *Seniority table* in `templates/constants.md`
+- Seniority: ask self-assessed level with options from *Seniority table* in `${CLAUDE_PLUGIN_ROOT}/templates/constants.md`
   (target level is already in *Job target*). Write own estimate from sources and calibration answers
   next to it. If self-assessed and estimated level differ by more than one level, tell candidate why.
   Target level lower than estimated is a choice, only mention it, do not try to change it.
@@ -141,15 +148,15 @@ for a non-technical reader. Fill *Strengths and stories* section of profile.
 4. Write a story only with facts candidate gave or confirmed. Missing result stays empty, mark `unsure`
    if candidate guessed. Map every story to strengths and to offer phrases it proves
    (Czech and English, for example `ownership`, `dotahování do konce`).
-5. Ask max 3 stories in first run. Candidate can add more later with `/interview stories`.
+5. Ask max 3 stories in first run. Candidate can add more later with `/job-offer-helper:interview stories`.
 
 ## Keeping it short
 
 - Do not ask questions already answered in profile, unless candidate asks to update.
 - Catalog grows (for example adjacent technology became core and got more questions). When running
-  `/interview` on an existing profile, ask only catalog questions missing in *Skill details* and recompute
+  `/job-offer-helper:interview` on an existing profile, ask only catalog questions missing in *Skill details* and recompute
   the level. If *Job target* is missing in an older profile, ask it first.
 - If candidate answers vaguely, save best guess and mark it in *Notes* as `unsure`, do not insist.
 - At the start of interview, and whenever candidate seems tired, tell how to stop:
-  "Type `done` into *Other* to finish, `skip` to skip this technology. You can continue later with `/interview`."
-- When finished, print short summary table and tell that offers can be rated with `/rate-offer`.
+  "Type `done` into *Other* to finish, `skip` to skip this technology. You can continue later with `/job-offer-helper:interview`."
+- When finished, print short summary table and tell that offers can be rated with `/job-offer-helper:rate-offer`.

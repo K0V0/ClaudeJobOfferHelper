@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Saves a job offer word for word (offer.md) and as printed page (offer-page.pdf) into its offer folder.
 
-Usage: python3 scripts/save_offer.py <url> [--folder <offer folder>] [--pdf-only]
+Usage: save-offer <url> [--folder <offer folder>] [--pdf-only]
 
 Exit codes: 0 = saved, 2 = offer text could not be read, nothing was written.
 """
@@ -26,7 +26,8 @@ sys.path.insert(0, str(SCRIPTS))
 
 from common import generic_extract  # noqa: E402
 
-OFFER_ROOT = SCRIPTS.parent / "profile" / "offer-results"
+DATA = Path.home() / "JobOfferHelper"  # plugin folder is replaced on every update
+OFFER_ROOT = DATA / "offer-results"
 TEXT_MARKER = "## Original text"
 MIN_TEXT_LENGTH = 400
 BROWSER_COMMANDS = ("google-chrome", "google-chrome-stable", "chrome", "chromium-browser", "chromium",
@@ -46,7 +47,7 @@ html, body { overflow: visible !important; height: auto !important; }
 
 def load_portals():
     portals = []
-    for path in sorted(SCRIPTS.glob("*/extract.py")):
+    for path in [*sorted(SCRIPTS.glob("*/extract.py")), *sorted((DATA / "portals").glob("*/extract.py"))]:
         spec = importlib.util.spec_from_file_location(f"portal_{path.parent.name}", path)
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)

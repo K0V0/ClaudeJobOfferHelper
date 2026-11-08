@@ -11,7 +11,8 @@ Every candidate gets the same questions for the same technology, so profiles are
 - Calibration questions are yes/no. Each has a level tag. Candidate level for technology is
   the highest level where candidate answered *yes*, with at least one *yes* on every lower level.
 - If a technology is not here, generate questions in the same style, ask them and append
-  the new technology to the end of this file (section *Added by agent*), including its **Tier**.
+  the new technology to `~/JobOfferHelper/technologies-added.md`, including its **Tier**.
+  This file is replaced on every update of the app.
 
 ## Tier
 
@@ -461,7 +462,7 @@ Every technology has a **Tier** line. Fields are `backend`, `frontend` and `devo
 
 ## Added by agent
 
-<!-- Agent appends new technologies here in the same format, with Tier line -->
+<!-- Shipped with the app. Agent appends new technologies to ~/JobOfferHelper/technologies-added.md in the same format, with Tier line -->
 
 ### Bash / Linux
 - Category: operations
