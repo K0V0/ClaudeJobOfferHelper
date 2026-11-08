@@ -36,8 +36,9 @@ Never write into `${CLAUDE_PLUGIN_ROOT}`, the plugin folder is replaced on every
 2. *Letter questions* below.
 3. Pick the thread and material, following *What a letter is for* and *Reader* in `${CLAUDE_PLUGIN_ROOT}/templates/cover-letter.md`:
    - one thread: what connects *Hook*, what the offer needs most and how candidate works
-   - 1-2 things the offer cares about and the CV does not explain, each with one proof from *Way of working*,
-     *Own words* or *Strengths and stories*, match by *Offer phrases it answers*
+   - 1-2 things the offer cares about and the CV does not explain, written in general terms from *Way of working*,
+     *Own words* or *Strengths and stories*, match by *Offer phrases it answers*. Facts and stories there tell what
+     is true, the letter does not retell them and names no project
    - how the cooperation would work: answers from *Way of working* that the offer fits. Topic answers are labels,
      write them in candidate words from *Own words*, never copy the option text
    - soft *must haves* (ownership, maintainability, knowledge sharing, interest in learning) go first
@@ -118,7 +119,8 @@ Check both versions before showing them, mechanically, not from memory:
 - no phrase listed in *Phrases candidate never uses*
 - every claim is backed by profile, no invented project, number or skill
 - check every sentence against profile: no offer phrase presented as own experience, no wording stronger than the level, no added context or purpose
-- no exact situation from past work projects (incident, client internals, internal numbers), unless the form asks for it
+- no project name and no exact situation or experience from past or own projects (incident, client internals, internal numbers), unless the form asks for it
+- items about what candidate brings are about the employer: no `mi vyhovuje`, `mám to blízko`, see *what the reader gets* in *What a letter is for*
 - no proof point repeated from the last 3 letters in `~/JobOfferHelper/offer-results/*/cover-letter-*.md` (except the only proof for a must have)
 - length within limit, count characters if the form has a limit
 - greeting and closing match the chosen tone

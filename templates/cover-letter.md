@@ -15,7 +15,8 @@ the CV is already on the table. It has to work in 30 to 45 seconds of reading.
 | written for this offer | at least the opening and the thread can not be sent to another company unchanged |
 | real hook | why this offer comes from the candidate (*Hook* in letter questions), never guessed from what sounds good in the offer |
 | own voice | build sentences from *Own words* in profile, keep their wording and rhythm. Do not smooth them into polished prose |
-| claim or preference | claim about ability needs a fact behind it, preference does not (`najlepšie sa mi pracuje v malom tíme` is enough) |
+| general, no specifics | describe how candidate works in general terms. No project names, no specific experiences or situations, they are in the CV and for the interview. `Takto pracujem aj na vlastných projektoch.` is enough, without `napríklad <project>`. A sentence like `Na jednom projekte som nastavil ...` reads out of context |
+| what the reader gets | items about what candidate brings are about the employer, not about what is convenient for candidate. Conditions are said as what the employer can count on: `práca na diaľku a IČO je pre mňa vyhovujúca`, `Bývam v Stredočeskom kraji, takže ani občasná prítomnosť na pracovisku osobne mi v prípade potreby neprekáža`, not `IČO mi vyhovuje`, `do Prahy to mám blízko` |
 | few technologies | only names that carry the thread, at most 2-3, the rest is in the CV |
 | nothing to add | if profile has nothing for this offer beyond the CV, say so and offer a shorter letter or none, a good CV beats filler |
 
@@ -41,15 +42,15 @@ uses some of them in own writing.
 
 ### Phrases
 
-Do not use these or their translations. Replace with concrete fact from candidate profile.
+Do not use these or their translations. Replace with a plain statement of how candidate works.
 
 | phrase | Czech version | replace with |
 | ------ | ------------- | ------------ |
 | I am writing to express my interest | píši Vám, abych vyjádřil zájem | first sentence about the role or company itself |
 | I am excited / thrilled to apply | s nadšením reaguji | why this role, in one concrete sentence |
-| passionate about | jsem zapálený pro | what candidate did with it in free time or at work |
-| proven track record; results-driven | prokazatelné výsledky | one concrete result with number or system name |
-| team player; proactive; detail-oriented | týmový hráč; proaktivní; pečlivý | situation that shows it |
+| passionate about | jsem zapálený pro | what candidate does with it, in general terms |
+| proven track record; results-driven | prokazatelné výsledky | how candidate works, in plain words |
+| team player; proactive; detail-oriented | týmový hráč; proaktivní; pečlivý | what candidate does, in general terms |
 | fast-paced; dynamic | dynamický | nothing, skip it |
 | leverage; utilize; harness | využít svých zkušeností | use, work with |
 | delve; navigate the landscape; tapestry; realm | - | plain verb |
@@ -67,8 +68,8 @@ further, and they can not judge `Flyway migrations` or `OpenAPI error format`. T
 
 | reader | what the letter should do |
 | ------ | ------------------------- |
-| recruiter, HR, agency (default, also when a name without a role is given) | how candidate works and what they care about, mapped to soft *must haves* of the offer (ownership, maintainability, sharing knowledge, learning), each claim with one concrete fact in plain words; technologies only as names (Java, Spring Boot, DevOps), no deep tech detail |
-| CTO, tech lead, developer (only when offer or candidate says so) | technical proof is fine: systems, technologies, design decisions |
+| recruiter, HR, agency (default, also when a name without a role is given) | how candidate works and what they care about, mapped to soft *must haves* of the offer (ownership, maintainability, sharing knowledge, learning), in general terms; technologies only as names (Java, Spring Boot, DevOps), no deep tech detail |
+| CTO, tech lead, developer (only when offer or candidate says so) | technical wording is fine, still no exact projects or situations |
 
 ### Keep stories for interview
 
@@ -76,15 +77,17 @@ Do not disclose exact situations from past work projects in a letter. Those are 
 where candidate tells them in person with context.
 
 - Allowed: summary level facts - years, role, share of work (`90 % DevOps`), type of system or domain
-  (`state administration`), technologies, own public projects (Tabilinks, kovo.space).
-- Not allowed: concrete incidents and what went wrong, client or employer internals, internal numbers
-  (`110 repositories`, times of night), step by step stories from *Stories* in profile.
+  (`state administration`), technologies. Link to portfolio at the end of the letter.
+- Not allowed: names of projects (own ones too, Tabilinks stays in the CV and portfolio), concrete incidents and what went
+  wrong, client or employer internals, internal numbers (`110 repositories`, times of night), step by step stories from
+  *Stories* in profile, sentences about one particular project.
 - A story from *Stories* can be turned into one summary sentence about how candidate works, without
   the situation itself (`when something breaks in my own solution, I fix it and change the process`).
 - Exception: the form explicitly asks for a specific situation (for example *describe your worst
   incident*). Then answer it, but only with what candidate is fine to share.
 
-- Bare slogans (`I am responsible`, `I do things end to end`) are not enough, every claim needs a fact behind it.
+- Bare slogans (`I am responsible`, `I do things end to end`) are not enough, say how candidate does it in general
+  terms (`after we agree on the approach, I take it through to deployment on my own`).
 - CV overview (list of technologies and what was done with them) is not a letter, it repeats the CV.
 
 ## Tone by employer type
@@ -107,12 +110,12 @@ structure changes a lot.
 
 | prompt in form (examples) | focus | structure |
 | ------------------------- | ----- | --------- |
-| none, free cover letter / motivační dopis | company and role | why this role (1-2 sentences), what candidate brings beyond the CV with one proof (2-3 sentences), why working together would work, from *Way of working* (1-2 sentences), closing (1 sentence) |
-| Why you ? / Why should we hire you ? / Proč právě Vy ? | candidate | must-have matches with proof first, one thing that makes candidate different, no company praise |
-| How will you be useful for us ? / What will you bring ? / Čím nám budete přínosem ? | future in the role | map 2-3 responsibilities from offer to concrete past work, what candidate can do in first months |
+| none, free cover letter / motivační dopis | company and role | why this role (1-2 sentences), what candidate brings beyond the CV (2-3 sentences), why working together would work, from *Way of working* (1-2 sentences), closing (1 sentence) |
+| Why you ? / Why should we hire you ? / Proč právě Vy ? | candidate | must-have matches first, one thing that makes candidate different, no company praise |
+| How will you be useful for us ? / What will you bring ? / Čím nám budete přínosem ? | future in the role | map 2-3 responsibilities from offer to how candidate works, what candidate can do in first months |
 | Why us ? / Why do you want to work here ? / Proč chcete pracovat u nás ? | company | product, domain, team or tech stack, preferences that the offer meets, no skill list |
-| Tell us about yourself / short intro / krátké představení | candidate summary | 3-5 sentences: current role, main stack, strongest result, what candidate looks for |
-| other question | as asked | answer the question in the first sentence, then proof |
+| Tell us about yourself / short intro / krátké představení | candidate summary | 3-5 sentences: current role, main stack, what candidate is good at, what candidate looks for |
+| other question | as asked | answer the question in the first sentence, then how candidate works |
 
 If form has character or word limit, respect it and show the count next to the letter.
 
@@ -126,18 +129,18 @@ Candidate picks it in letter questions, for every prompt type. Content rules sta
 | Bullets | 1-2 sentences with the hook, then the parts of the prompt type as short lists, closing as plain sentences. Free letter has two lists: about the candidate (2-3 items) and what candidate brings (3-4 items). Headings in candidate words from *Style notes*, for example *V krátkosti o mne:* and *V čom viem byť pre Vás prínosom:* |
 
 In *Bullets*: items are `Label: explanation`, with a colon, one or two sentences each, marked with plain `-`. Items still
-follow one thread, and each claim about ability keeps its fact. In ATS version the added keywords are one more item.
+follow one thread and stay general. In ATS version the added keywords are one more item.
 
 ### What non-technical reader wants to hear
 
-Recruiter reads these questions as business questions. Answer in outcomes, each backed by one fact from
-profile, technologies only as names. A general letter can answer them too, with one plain paragraph
+Recruiter reads these questions as business questions. Answer in outcomes, in general terms,
+technologies only as names. A general letter can answer them too, with one plain paragraph
 on what the company gets, instead of a separately tailored answer.
 
 | prompt | reader wants to hear |
 | ------ | -------------------- |
 | How will you be useful / move us forward ? / Jak mohu vaši firmu posunout vpřed? | what changes for the company: less manual work and saved time, fewer outages and lower risk, working independently on own area, knowledge staying in the team (documentation, handover), quick start |
-| Why you ? / Dejte firmě vědět, proč by si měla vybrat právě vás | why you over other candidates with similar CV: you match what they need most (with proof), one thing that makes you different (rare combination, own projects in production), reliability and attitude backed by a fact, motivation for this exact role so you will stay |
+| Why you ? / Dejte firmě vědět, proč by si měla vybrat právě vás | why you over other candidates with similar CV: you match what they need most, one thing that makes you different (rare combination, own projects in production), reliability and attitude, motivation for this exact role so you will stay |
 
 ## ATS optimization
 
