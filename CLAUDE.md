@@ -15,7 +15,10 @@ App purpose and expected output are described in `assignments/task1.md` and `ass
 - `/job-offer-helper:rate-offer` - summarize and rate offer, ask about unclear skills and save answers to profile.
 - Everything about one offer lives in `~/JobOfferHelper/offer-results/<yyyy-mm-dd>-<company>-<position>/` - offer text,
   ratings, cover letters. See *Offer folder* in `skills/rate-offer/SKILL.md`. Never overwrite a rating or letter there, add a new file.
-- `bin/save-offer` runs `scripts/save_offer.py` - saves offer from URL word for word and as PDF, one extractor per portal
+- `bin/save-offer` (`.ps1` for PowerShell) runs `scripts/save_offer.py` - saves offer from URL word for word and as PDF, one extractor per portal
   in `scripts/<portal>/`, candidate's own ones in `~/JobOfferHelper/portals/<portal>/`.
+- Candidates run a prebuilt `save-offer` pinned in `bin/save-offer.lock`, Python is only the fallback. After changing `scripts/`,
+  push a tag `save-offer-v<n>`, wait for the release, then commit its lock file:
+  `gh release download save-offer-v<n> -p save-offer.lock -O bin/save-offer.lock --clobber`. Until then candidates keep the old build.
 - `/job-offer-helper:cover-letter` - write cover letter or answer to application question in candidate style, normal and ATS version.
 - Never use `—` or `–` in any text written for the candidate to send.

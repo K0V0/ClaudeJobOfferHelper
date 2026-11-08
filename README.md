@@ -14,8 +14,8 @@ claude plugin install job-offer-helper@k0v0
 
 Later versions come with `claude plugin update job-offer-helper@k0v0`.
 
-Saving offers from links needs Python 3.10 or newer with `requests` and `beautifulsoup4`, and Chrome, Chromium, Edge
-or Brave. Without them everything else works, You just paste the offer text.
+Nothing else has to be installed, saving offers from links downloads its own small program the first time (about 13 MB).
+Chrome, Chromium, Edge or Brave is needed only for the PDF of the offer page and for pages that need JavaScript.
 
 ### Your data
 
