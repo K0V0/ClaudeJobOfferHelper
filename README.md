@@ -14,7 +14,7 @@ claude plugin install job-offer-helper@k0v0
 
 Later versions come with `claude plugin update job-offer-helper@k0v0`.
 
-Nothing else has to be installed, saving offers from links downloads its own small program the first time (about 13 MB).
+Nothing else has to be installed, saving offers from links downloads its own small program the first time (11 to 25 MB, depending on the system).
 Chrome, Chromium, Edge or Brave is needed only for the PDF of the offer page and for pages that need JavaScript.
 
 ### Your data
