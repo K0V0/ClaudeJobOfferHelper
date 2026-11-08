@@ -10,6 +10,7 @@ App purpose and expected output are described in `assignments/task1.md` and `ass
 - `/rate-offer` - summarize and rate offer, ask about unclear skills and save answers to profile.
 - Everything about one offer lives in `profile/offer-results/<yyyy-mm-dd>-<company>-<position>/` - offer text,
   ratings, cover letters. See *Offer folder* in `/rate-offer`. Never overwrite a rating or letter there, add a new file.
+- `scripts/save_offer.py` - saves offer from URL word for word and as PDF, one extractor per portal in `scripts/<portal>/`.
 - `/cover-letter` - write cover letter or answer to application question in candidate style, normal and ATS version.
 - Never use `—` or `–` in any text written for the candidate to send.
 - If candidate pastes a job offer without command, follow `/rate-offer`.

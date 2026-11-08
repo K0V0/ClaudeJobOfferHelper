@@ -8,7 +8,8 @@ argument-hint: "[offer text, URL, or company / offer folder to reevaluate]"
 
 ## Inputs
 
-- Offer text or URL (fetch it if URL is given). If nothing given, ask candidate to paste the offer.
+- Offer text or URL. URL is saved by script and rated from the saved `offer.md`, see *Saving the offer*.
+  If nothing given, ask candidate to paste the offer.
 - Existing offer folder in `profile/offer-results/` (see *Offer folder*) - if this offer was rated before,
   this is a *Reevaluation*.
 - `profile/candidate-profile.md` - if missing, tell candidate to run `/interview` first, but offer
@@ -46,7 +47,8 @@ Every rated offer has its own folder, shared with `/cover-letter`:
 
 ```
 profile/offer-results/<yyyy-mm-dd>-<company>-<position>/
-  offer.md                       offer link and full text as it was rated
+  offer.md                       offer link and original text, word for word
+  offer-page.pdf                 printed offer page
   rating-<yyyy-mm-dd>.md         one file per rating, the first one and every reevaluation
   cover-letter-<yyyy-mm-dd>.md   one file per generated letter (written by /cover-letter)
 ```
@@ -57,11 +59,28 @@ profile/offer-results/<yyyy-mm-dd>-<company>-<position>/
   If unsure whether it is the same offer, ask candidate.
 - Never overwrite `rating-*.md` or `cover-letter-*.md`. Second file on the same day gets suffix `-2`, `-3`.
 - `offer.md` is written once. If the offer text changed since (new salary, changed requirements), save the new
-  text as `offer-<yyyy-mm-dd>.md` next to it.
+  text as `offer-<yyyy-mm-dd>.md` next to it. Printed page of changed offer is `offer-page-<yyyy-mm-dd>.pdf`.
 - Rating file contains: offer title and link, date, `Type: first rating` or `Type: reevaluation of <previous file>`,
   then everything from *Output* below, as shown to candidate, plus the clarifications asked and answered for this offer.
 - Batch overviews of many offers stay in `profile/offer-batches/`. When an offer from a batch gets a full rating,
   it gets its own folder.
+
+### Saving the offer
+
+Offers disappear from the web, so the original is saved before rating. `offer.md` is the original word for word,
+never summarized, shortened, translated or retyped from memory.
+
+- URL: run `python3 scripts/save_offer.py <url>` (add `--folder <path>` if the folder is already known). It finds the
+  folder by link or creates a new one, writes `offer.md` and `offer-page.pdf`, and prints their names. Then read `offer.md`.
+  Do not fetch the URL or read page source yourself, that is what the script saves tokens on.
+- Recruiting agency with known end client: rename the created folder as described above.
+- Script prints `extractor: generic` (portal without own extractor): check that `offer.md` really is the offer. If it is
+  not, or the portal comes back often, look at the page once and add `scripts/<portal>/extract.py` with `HOSTS` and
+  `extract(soup)`, the existing portals are examples. Portal folder name is its domain with `_`, for example `jobs_cz`.
+- Script fails (exit code 2, nothing written), `pdf: failed`, or candidate pasted the text: ask candidate to paste the full
+  offer if it is not pasted yet and write it to `offer.md` unchanged: `# <title>`, `- Link: <url>`, `- Saved: <date>`,
+  `## Original text`, then the text. With a URL also try `python3 scripts/save_offer.py <url> --folder <path> --pdf-only`.
+  Tell candidate in one line when there is no PDF.
 
 ## Reevaluation
 

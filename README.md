@@ -26,7 +26,10 @@ Open this project in Claude Code and write anything - if You have no profile yet
      and remember answers for next offers
 5. **Results**
    - offer summary, match rating, red flags and final verdict
-   - saved to `profile/offer-results/<date>-<company>-<position>/` together with the offer text
+   - saved to `profile/offer-results/<date>-<company>-<position>/` together with the original offer text and PDF of the
+     offer page, so You have it even after the offer disappears from the web
+   - links from jobs.cz, prace.cz, profesia.sk, startupjobs.cz and LinkedIn are read by scripts in `scripts/`,
+     they need Python 3 with `requests` and `beautifulsoup4`, and Chrome or Chromium
    - after interview or recruiter call say *rate it again* (or `/rate-offer <company>`) and tell what You learned -
      You get a new rating with changes against the old one, old rating stays
 6. **Cover letter**
