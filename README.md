@@ -56,8 +56,10 @@ Run `/job-offer-helper:interview` first.
    - after interview or recruiter call say *rate it again* (or `/job-offer-helper:rate-offer <company>`) and tell what You learned -
      You get a new rating with changes against the old one, old rating stays
 6. **Cover letter**
+   - run `/job-offer-helper:letter-interview` once before first letter, it asks what the CV can not show: do You want to own a whole
+     service or get clear tasks, in what team You work best, why You are looking, and a few short answers in Your own words
    - run `/job-offer-helper:cover-letter` after rating, or ask for cover letter, motivation letter or answer to application question
    - first time I ask for letters You wrote Yourself (ideally with the offers they were for), to learn Your style
-   - tell me if the form asks something specific, like *Why you ?* or *How will you be useful for us ?*
+   - tell me if the form asks something specific, like *Why you ?* or *How will you be useful for us ?*, and if You want the letter as prose or as bullets
    - You get two versions to compare: normal one for a human and one optimized for the ATS the company uses
    - letters are saved to the offer folder in `~/JobOfferHelper/offer-results/`, paste back Your final edited version and it becomes Your writing sample

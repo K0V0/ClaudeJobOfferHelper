@@ -20,5 +20,6 @@ App purpose and expected output are described in `assignments/task1.md` and `ass
 - Candidates run a prebuilt `save-offer` pinned in `bin/save-offer.lock`, Python is only the fallback. After changing `scripts/`,
   push a tag `save-offer-v<n>`, wait for the release, then commit its lock file:
   `gh release download save-offer-v<n> -p save-offer.lock -O bin/save-offer.lock --clobber`. Until then candidates keep the old build.
+- `/job-offer-helper:letter-interview` - second interview, way of working, motivation, stories and own words for cover letters.
 - `/job-offer-helper:cover-letter` - write cover letter or answer to application question in candidate style, normal and ATS version.
 - Never use `—` or `–` in any text written for the candidate to send.

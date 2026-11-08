@@ -26,19 +26,23 @@ Never write into `${CLAUDE_PLUGIN_ROOT}`, the plugin folder is replaced on every
 - `~/JobOfferHelper/candidate-profile.md` - technologies, *Skill details*, *Preferences* and *Writing style*.
   If missing, tell candidate to run `/job-offer-helper:interview` first. If *Writing style* section is missing in an
   older profile, copy it there from `${CLAUDE_PLUGIN_ROOT}/templates/candidate-profile.md`.
-- `${CLAUDE_PLUGIN_ROOT}/templates/cover-letter.md` - punctuation rules, cliché phrases, tone, prompt types, ATS.
+- *Letter material* and *Strengths and stories* in the profile. If *Letter material* is missing or empty, offer
+  `/job-offer-helper:letter-interview` before writing. Letters written without it end up repeating the CV.
+- `${CLAUDE_PLUGIN_ROOT}/templates/cover-letter.md` - what a letter is for, punctuation rules, cliché phrases, tone, prompt types, ATS.
 
 ## Steps
 
 1. *Writing samples* below, only if *Samples* table is empty or candidate wants to add new ones.
 2. *Letter questions* below.
-3. Pick material for the letter from rating, written for the reader (see *Reader* in `${CLAUDE_PLUGIN_ROOT}/templates/cover-letter.md`):
-   - 2-3 strongest *must have* matches, each with concrete proof from *Skill details* or sources
-     (system, result, number, years)
+3. Pick the thread and material, following *What a letter is for* and *Reader* in `${CLAUDE_PLUGIN_ROOT}/templates/cover-letter.md`:
+   - one thread: what connects *Hook*, what the offer needs most and how candidate works
+   - 1-2 things the offer cares about and the CV does not explain, each with one proof from *Way of working*,
+     *Own words* or *Strengths and stories*, match by *Offer phrases it answers*
+   - how the cooperation would work: answers from *Way of working* that the offer fits. Topic answers are labels,
+     write them in candidate words from *Own words*, never copy the option text
    - soft *must haves* (ownership, maintainability, knowledge sharing, interest in learning) go first
-     for a non-technical reader, each as a how-you-work claim with one concrete fact behind it,
-     tech details stay in the CV. Take facts from *Strengths and stories* in profile, match by
-     *Offer phrases it answers*. If the section is empty, offer `/job-offer-helper:interview stories` before writing
+     for a non-technical reader, tech details stay in the CV
+   - never promise what candidate does not want, check *Way of working* and *Drains*
    - after saving the letter, add its offer folder name into *Used in letters* of every story used
    - never mention anything from *Never mention in letters*
    - never describe exact situations from past work projects, keep them for interview, see
@@ -51,7 +55,7 @@ Never write into `${CLAUDE_PLUGIN_ROOT}`, the plugin folder is replaced on every
    - never mention missing skills, red flags, salary or anything from *Findings* as weakness
 4. Pick tone: style notes for this employer type, then general *Style notes*, then *Tone by employer type*.
    Language is the language of the offer, unless candidate answered otherwise.
-5. Write normal version, structure from *Prompt types* in `${CLAUDE_PLUGIN_ROOT}/templates/cover-letter.md`.
+5. Write normal version, structure from *Prompt types* and layout from *Format* in `${CLAUDE_PLUGIN_ROOT}/templates/cover-letter.md`.
 6. Write ATS version from the normal one by *ATS optimization* rules. Keep the candidate voice,
    change wording only where keywords need it.
 7. Run *Self check* on both versions, fix and check again.
@@ -82,12 +86,17 @@ the letter they can paste the final version, so the next one sounds more like th
 
 ## Letter questions
 
-Ask with `AskUserQuestion`, one call, skip what is already known from offer, URL or earlier answers:
+Ask with `AskUserQuestion`, max 4 questions per call, so a second call only when more are needed. Skip what is
+already known from offer, URL or earlier answers:
 
 - `Prompt`: does application ask a specific question ? Options from *Prompt types*:
   `Free letter` / `Why you` / `How useful for us` / `Why us`. Candidate can type exact question into *Other*.
 - `Limit`: `No limit` / `Up to 500 chars` / `Up to 1000 chars` / `Up to 2000 chars`, *Other* for exact
   number or words.
+- `Format`: `Prose` / `Bullets`, see *Format* in `${CLAUDE_PLUGIN_ROOT}/templates/cover-letter.md`.
+- `Hook`: "What caught You in this offer ?" Options: up to 4 concrete things from this offer (product, kind of work,
+  team, way of working), *Other* for own words. Candidate saying `only applying because of pay / remote` is a valid
+  answer: then the letter stays short and does not fake interest.
 - `ATS`: shown only when not detected from application URL. Options: `Don't know` / `Workday` /
   `Teamio (LMC)` / `SuccessFactors`, *Other* for any system from *Detect the system* table.
 - `Language`: only when offer language is not the language candidate usually writes in, or offer is bilingual.
@@ -100,6 +109,10 @@ If `AskUserQuestion` is not available, ask in one numbered message.
 Check both versions before showing them, mechanically, not from memory:
 
 - no `—` and no `–` anywhere
+- the letter has one thread, read paragraph by paragraph: does each one follow from the previous ?
+- every sentence: could it be read from the CV, or sent to another company unchanged ? Rewrite or delete it
+- sentences read aloud sound like *Own words*, not like a translated form
+- ATS version is at most 40 words longer than the normal one
 - count of ` - ` used as sentence separator, semicolons and lists of three within limits
 - no phrase from *Phrases* table in `${CLAUDE_PLUGIN_ROOT}/templates/cover-letter.md`, in any language
 - no phrase listed in *Phrases candidate never uses*
@@ -112,7 +125,7 @@ Check both versions before showing them, mechanically, not from memory:
 
 ## Output
 
-1. One line: offer, employer type, prompt type, language, ATS and which style source was used
+1. One line: offer, employer type, prompt type, format, language, ATS and which style source was used
    (own samples for this employer type / own samples / default tone).
 2. **Normal version** - the letter, in a code block so candidate can copy it, with word and character count.
 3. **ATS version** - the same, ATS detected or `generic`.
