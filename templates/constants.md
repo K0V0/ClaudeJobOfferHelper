@@ -100,7 +100,7 @@ Used to alert candidate. Every found red flag is reported with severity and with
 
 Perks are not a problem themselves. They become a red flag when they are the main benefits, salary is missing
 or they are presented as something special. Real benefits are money, time and security: salary, paid vacation
-over legal minimum, sick days, pension contribution, paid training time, home office allowance, meal allowance.
+over legal minimum, sick days, pension contribution, paid training time, home office allowance, meal allowance (in SK only above legal contribution).
 
 | perk in job offer | possible meaning | severity | question for interview |
 | ----------------- | ---------------- | -------- | ---------------------- |
@@ -113,6 +113,30 @@ over legal minimum, sick days, pension contribution, paid training time, home of
 | possibility of home office | office by default, home office as a favour | info | How many home office days are standard and who approves them ? |
 | Multisport card as main benefit | small cost, often partly paid by employee | info | How much of the card do I pay myself ? |
 | benefits after probation / after 1 year | benefits are used to keep people from leaving | info | Which benefits do I have from day one ? |
+
+### Legal duties presented as benefits
+
+Employer has to provide these anyway, so they add no value to the offer. Rules differ by country of the employment
+contract, each row says where it applies. Vacation rows also depend on candidate age and child care: profile does
+not store them, so if they are not known, report the flag together with the condition.
+
+| phrase in job offer | possible meaning | severity | question for interview |
+| ------------------- | ---------------- | -------- | ---------------------- |
+| 20 days of vacation; 4 weeks of vacation | legal minimum in SK and CZ, nothing extra | info | How many days of vacation do You give over legal minimum ? |
+| 25 days of vacation; 5 weeks of vacation (SK) | legal minimum in SK for anyone who turns 33 by end of the year or permanently cares for a child, real benefit only for others | info | Do people who have 5 weeks by law get anything extra ? |
+| 25 days of vacation; 5 weeks of vacation (CZ) | legal minimum at state and public employers, at private employer it is 1 week over 4 week minimum and very common | info | How many days of vacation do You give in total, is there more with seniority ? |
+| 5 extra days of vacation | if counted from 4 weeks, in SK it is only legal minimum for anyone 33+ or caring for a child | info | Extra over what ? How many days will I have in total ? |
+| salary paid on time; reliable salary payment | basic legal duty (SK and CZ: latest by end of next month), mentioning it suggests payment problems now or in the past | warning | On which day is salary paid and was it ever late in last 2 years ? |
+| invoices paid on time; reliable payment of invoices | basic contractual duty, mentioning it suggests cash flow problems | warning | What is invoice due date and was any invoice paid late in last 2 years ? |
+| paid health and social insurance | mandatory for employer in SK and CZ, nothing extra | info | What are benefits besides those required by law ? |
+| HPP; stable employment contract; legal employment | work with employee obligations has to be employment by law anyway, unusual only compared to bodyshops and švarcsystém | info | What does this contract give me over legal minimum ? |
+| paid overtime | legal minimum in SK and CZ is pay plus 25 % surcharge, or time off where agreed | info | Is overtime surcharge over legal minimum and how often is overtime needed ? |
+| paid public holidays | public holidays are paid by law | info | What are benefits besides those required by law ? |
+| meal vouchers; meal allowance (SK) | employer has to arrange meals in SK, real benefit only above legal contribution. Not mandatory in CZ, there it is a real benefit | info | What is employer contribution per day ? |
+| social fund contribution (SK) | creating social fund is mandatory in SK from first employee | info | How much is paid from the fund per person per year and for what ? |
+| paid time off for doctor, wedding or funeral | legal right in SK and CZ within limits, in SK doctor is paid up to 7 days per year. Sick days without doctor are a different, real benefit | info | Do You give paid days over the legal limit ? |
+| compensation during sickness | statutory compensation, only amount above it is a benefit | info | Do You pay more than law requires during sickness ? |
+| work laptop provided; we provide all equipment (on HPP) | employer has to create conditions for work, nothing extra | info | What are benefits besides work equipment ? |
 
 ### Contract and money
 
@@ -152,6 +176,7 @@ Detect from offer text or when candidate describes the process.
 | situation | possible meaning | severity | question for interview |
 | --------- | ---------------- | -------- | ---------------------- |
 | more than 4 interview rounds | slow decisions, disrespect of candidate time | warning | How many rounds are there and when will I know the result ? |
+| number of rounds and timeline not disclosed even after request | unorganized process, no real hiring plan, disrespect of candidate time | warning | Who decides about hiring and by which date will I have the final answer ? |
 | homework longer than 4 hours | free work, disrespect of candidate time | warning | Can I do live coding or show existing project instead ? |
 | copy of ID card, birth number or bank account before contract | scam or GDPR violation | alert | Why do You need this before the contract is signed ? |
 | any payment from candidate (course, equipment, "registration") | scam | alert | - do not pay, leave the process |
