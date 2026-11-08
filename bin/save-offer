@@ -24,11 +24,11 @@ fetch() {
     fi
 }
 
-checksum() {
+checksum() {  # from stdin, with a backslash in the path sha256sum puts one before the hash too
     if command -v sha256sum >/dev/null 2>&1; then
-        sha256sum "$1" | cut -d ' ' -f 1
+        sha256sum < "$1" | cut -d ' ' -f 1
     elif command -v shasum >/dev/null 2>&1; then
-        shasum -a 256 "$1" | cut -d ' ' -f 1
+        shasum -a 256 < "$1" | cut -d ' ' -f 1
     fi
 }
 
