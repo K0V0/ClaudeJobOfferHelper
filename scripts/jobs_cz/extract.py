@@ -32,6 +32,13 @@ def _standard(soup, body):
     return offer
 
 
+def _branded_company(page_title, job_title):
+    """Page title of a branded offer is `<job> | <company>` or `<job> - <company>`."""
+    if "|" in page_title:
+        return page_title.rpartition("|")[2].strip()
+    return page_title[len(job_title):].strip(" -") if page_title.startswith(job_title) else ""
+
+
 def extract(soup):
     body = soup.select_one('[data-test="jd-body-richtext"]')
     if body:
@@ -41,6 +48,6 @@ def extract(soup):
         return from_alma_page(soup)
     offer = empty_offer()
     offer["title"] = clean(branded.find("h1")) or clean(soup.find("h1"))
-    offer["company"] = clean(soup.title).rpartition("|")[2].strip()
+    offer["company"] = _branded_company(clean(soup.title), offer["title"])
     offer["text"] = html_to_text(branded)
     return offer
