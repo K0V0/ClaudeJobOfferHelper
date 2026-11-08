@@ -1,7 +1,7 @@
 ---
 name: interview
 description: Interview the candidate about technologies, skills and preferences and save answers into candidate profile. Use when candidate runs the app first time, wants to add a technology, or says profile is outdated.
-argument-hint: "[technology to add or update | stories]"
+argument-hint: "[technology to add or update]"
 allowed-tools: Read(~/.claude/plugins/**) Read(~/JobOfferHelper/**) Edit(~/JobOfferHelper/**)
 ---
 
@@ -20,7 +20,6 @@ Never write into `${CLAUDE_PLUGIN_ROOT}`, the plugin folder is replaced on every
 1. If `~/JobOfferHelper/candidate-profile.md` does not exist, copy `${CLAUDE_PLUGIN_ROOT}/templates/candidate-profile.md` there.
 2. Read the profile and the catalog: `${CLAUDE_PLUGIN_ROOT}/templates/technologies.md` and, when it exists, `~/JobOfferHelper/technologies-added.md`.
 3. If argument with technology was given, go straight to *Technology questions* for that technology only.
-   If argument is `stories`, go straight to *Strengths and stories*.
 
 ## Bootstrap from candidate sources
 
@@ -121,35 +120,6 @@ After technologies, fill *Seniority* and *Preferences* sections of profile with 
 - After every preference value ask its weight: `Deal-breaker` / `Important` / `Nice` / `Don't care`.
   Ask value and weight in the same call where possible. Survival minimum salary is always `deal-breaker`.
 
-## Strengths and stories
-
-After preferences, or alone when argument is `stories`. Goal is material for *why hire me* answers
-and for soft *must haves* in offers (ownership, maintainability, sharing knowledge, learning), written
-for a non-technical reader. Fill *Strengths and stories* section of profile.
-
-1. Prefill: from sources, *Skill details*, writing samples and earlier letters propose 3-6 candidate
-   stories (what happened, where). Do not invent results, leave them empty.
-2. Ask with `AskUserQuestion`, one call:
-   - `Strengths` (multi select, candidate picks max 3) - what colleagues come to You for, or what You do
-     better than others. Options: 4 most likely from profile, for example `Owning work end to end`,
-     `Long-term maintainable code`, `Automating manual work`, `Bridging dev and ops`, `Explaining and sharing
-     knowledge`, `Learning new tech fast`, `Debugging hard problems`. *Other* for own words.
-   - `Stories` (multi select) - which prefilled stories are real and can be told in a letter.
-   - `Motivation` (multi select) - why candidate is looking now, options from profile and preferences,
-     for example `Back to Java backend`, `Room to grow`, `Better pay`, `Stability`, `Product / domain`.
-   - `Avoid` (single select) - is there something letters must never mention (reason for leaving, gap,
-     NDA project) ? `No` / `Yes, I will write it`.
-3. Then one plain numbered message, free text, answered briefly. For every picked story ask:
-   - what was the problem or starting state
-   - what did You do Yourself (not the team)
-   - what changed after: number, time saved, who used it, what stopped breaking. `don't know` is ok
-   Also ask: the result You are most proud of; what a colleague or manager praised You for;
-   what You do that other candidates on Your level usually do not; and the *Avoid* detail if `Yes`.
-4. Write a story only with facts candidate gave or confirmed. Missing result stays empty, mark `unsure`
-   if candidate guessed. Map every story to strengths and to offer phrases it proves
-   (Czech and English, for example `ownership`, `dotahování do konce`).
-5. Ask max 3 stories in first run. Candidate can add more later with `/job-offer-helper:interview stories`.
-
 ## Keeping it short
 
 - Do not ask questions already answered in profile, unless candidate asks to update.
@@ -159,4 +129,5 @@ for a non-technical reader. Fill *Strengths and stories* section of profile.
 - If candidate answers vaguely, save best guess and mark it in *Notes* as `unsure`, do not insist.
 - At the start of interview, and whenever candidate seems tired, tell how to stop:
   "Type `done` into *Other* to finish, `skip` to skip this technology. You can continue later with `/job-offer-helper:interview`."
-- When finished, print short summary table and tell that offers can be rated with `/job-offer-helper:rate-offer`.
+- When finished, print short summary table and tell that offers can be rated with `/job-offer-helper:rate-offer`,
+  and that `/job-offer-helper:letter-interview` collects material for cover letters.

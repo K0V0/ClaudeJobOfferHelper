@@ -73,9 +73,30 @@ Weight of every preference, used for preference match rating:
 | Avoided domains | | | |
 | Other | | | |
 
+## Letter material
+
+Filled by `/job-offer-helper:letter-interview`, used by `/job-offer-helper:cover-letter`. What the CV can not show.
+Only what candidate said or confirmed.
+
+### Way of working
+
+| Topic | Answer | Proof | Offer phrases it answers |
+| ----- | ------ | ----- | ------------------------ |
+
+### Own words
+
+Answers word for word, only typos fixed. Letters are built from these sentences.
+
+### Direction
+
+- Career path:
+- In two years:
+- Gives energy:
+- Drains (never in letters):
+
 ## Strengths and stories
 
-Filled by `/job-offer-helper:interview` (*Strengths and stories*), used by `/job-offer-helper:cover-letter` for *why hire me* answers and
+Filled by `/job-offer-helper:letter-interview`, used by `/job-offer-helper:cover-letter` for *why hire me* answers and
 soft *must haves*. Only facts candidate gave or confirmed.
 
 ### Strengths

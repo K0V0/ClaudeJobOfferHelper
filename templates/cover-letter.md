@@ -3,6 +3,24 @@
 Static rules for `/job-offer-helper:cover-letter`. Candidate style learned from samples is in *Writing style* section of
 `~/JobOfferHelper/candidate-profile.md` and has priority over *Tone by employer type* below.
 
+## What a letter is for
+
+CV is the evidence, letter is the interpretation. A letter answers one question: why invite this candidate, when
+the CV is already on the table. It has to work in 30 to 45 seconds of reading.
+
+| rule | how to apply |
+| ---- | ------------ |
+| one thread | pick one idea that connects this offer with this candidate, every paragraph serves it. Separate claims one per paragraph read as a list, even without bullets |
+| adds to CV | a sentence that can be read from the CV is deleted, unless it explains why that fact matters for this offer |
+| written for this offer | at least the opening and the thread can not be sent to another company unchanged |
+| real hook | why this offer comes from the candidate (*Hook* in letter questions), never guessed from what sounds good in the offer |
+| own voice | build sentences from *Own words* in profile, keep their wording and rhythm. Do not smooth them into polished prose |
+| claim or preference | claim about ability needs a fact behind it, preference does not (`najlepšie sa mi pracuje v malom tíme` is enough) |
+| few technologies | only names that carry the thread, at most 2-3, the rest is in the CV |
+| nothing to add | if profile has nothing for this offer beyond the CV, say so and offer a shorter letter or none, a good CV beats filler |
+
+Length is 100 to 200 words unless style notes, *Tone by employer type* or the form say otherwise.
+
 ## Punctuation and AI cliché
 
 Recruiters recognize AI written letters by the same few habits. Avoid them always, even if candidate
@@ -16,7 +34,7 @@ uses some of them in own writing.
 | lists of exactly three (`fast, reliable and scalable`) | max 1 per letter, use two or four items, or one with an example |
 | `not only X, but also Y`; `it is not X, it is Y` | never |
 | every paragraph of the same length | vary paragraph and sentence length like in samples |
-| bullet points and bold text in letter body | never, unless form asks for list |
+| bullet points and bold text in letter body | bullet points only in *Bullets* format or when form asks for list, bold text never |
 | emoji, exclamation marks | never, max 1 exclamation mark for startup tone |
 | opening with own name (`My name is ...`) | never, name is in signature |
 | closing summary that repeats the letter | never |
@@ -89,7 +107,7 @@ structure changes a lot.
 
 | prompt in form (examples) | focus | structure |
 | ------------------------- | ----- | --------- |
-| none, free cover letter / motivační dopis | company and role | role or company hook, 2 strongest matches with proof, motivation, closing |
+| none, free cover letter / motivační dopis | company and role | why this role (1-2 sentences), what candidate brings beyond the CV with one proof (2-3 sentences), why working together would work, from *Way of working* (1-2 sentences), closing (1 sentence) |
 | Why you ? / Why should we hire you ? / Proč právě Vy ? | candidate | must-have matches with proof first, one thing that makes candidate different, no company praise |
 | How will you be useful for us ? / What will you bring ? / Čím nám budete přínosem ? | future in the role | map 2-3 responsibilities from offer to concrete past work, what candidate can do in first months |
 | Why us ? / Why do you want to work here ? / Proč chcete pracovat u nás ? | company | product, domain, team or tech stack, preferences that the offer meets, no skill list |
@@ -97,6 +115,18 @@ structure changes a lot.
 | other question | as asked | answer the question in the first sentence, then proof |
 
 If form has character or word limit, respect it and show the count next to the letter.
+
+### Format
+
+Candidate picks it in letter questions, for every prompt type. Content rules stay the same, only the layout changes.
+
+| format | layout |
+| ------ | ------ |
+| Prose | short paragraphs of different length |
+| Bullets | 1-2 sentences with the hook, then the parts of the prompt type as short lists, closing as plain sentences. Free letter has two lists: about the candidate (2-3 items) and what candidate brings (3-4 items). Headings in candidate words from *Style notes*, for example *V krátkosti o mne:* and *V čom viem byť pre Vás prínosom:* |
+
+In *Bullets*: items are `Label: explanation`, with a colon, one or two sentences each, marked with plain `-`. Items still
+follow one thread, and each claim about ability keeps its fact. In ATS version the added keywords are one more item.
 
 ### What non-technical reader wants to hear
 
@@ -136,11 +166,15 @@ Detect from application URL or form page. If unknown, ask candidate and fall bac
 
 ### Rules
 
+ATS version is the normal letter with keywords added in context, it never turns into a CV in sentences.
+Keyword matching is mostly done on the CV, and the letter is still read by a person.
+
 - Use the job title exactly as written in the offer, at least once, best in the first paragraph.
 - Use technologies and skills spelled exactly as in the offer (`Spring Boot`, not `SpringBoot` or `Spring`).
   Write acronym and full name once each, for example `Continuous Integration (CI)`.
-- Cover every *must have* the candidate matches (level >= 1 or `related`), most important first.
-  Each important keyword 1-2 times, no keyword stuffing.
+- Add the most important matched *must haves* (level >= 1 or `related`) as names in one or two sentences,
+  at most 40 words more than the normal version, each keyword once.
+  Other matched *must haves* belong in the CV, list them in the keyword table.
 - Never copy offer phrases as candidate experience (`integrations across the bank's systems is what I have done for years`)
   unless the profile confirms that exact claim. Keywords may appear only at the level the profile shows:
   L1 = `tried / called once`, L2 = `used in a project`, never stronger wording.
