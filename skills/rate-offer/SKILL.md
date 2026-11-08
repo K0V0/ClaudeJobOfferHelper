@@ -81,11 +81,13 @@ never summarized, shortened, translated or retyped from memory.
 - URL: run `save-offer <url>` (add `--folder <path>` if the folder is already known). It finds the
   folder by link or creates a new one, writes `offer.md` and `offer-page.pdf`, and prints their names. Then read `offer.md`.
   Do not fetch the URL or read page source yourself, that is what the script saves tokens on.
+  First run downloads the prebuilt script, so it takes a bit longer. In PowerShell the command is
+  `powershell -NoProfile -ExecutionPolicy Bypass -File "${CLAUDE_PLUGIN_ROOT}/bin/save-offer.ps1" '<url>'`.
 - Recruiting agency with known end client: rename the created folder as described above.
 - Script prints `extractor: generic` (portal without own extractor): check that `offer.md` really is the offer. If it is
   not, or the portal comes back often, look at the page once and add `~/JobOfferHelper/portals/<portal>/extract.py` with `HOSTS` and
   `extract(soup)`, `${CLAUDE_PLUGIN_ROOT}/scripts/<portal>/` has examples. Portal folder name is its domain with `_`, for example `jobs_cz`.
-- Script fails (exit code 2, nothing written, or Python or its libraries are missing), `pdf: failed`, or candidate pasted the text: ask candidate to paste the full
+- Script fails (exit code 2 or 3, nothing written, or Python libraries are missing), `pdf: failed`, or candidate pasted the text: ask candidate to paste the full
   offer if it is not pasted yet and write it to `offer.md` unchanged: `# <title>`, `- Link: <url>`, `- Saved: <date>`,
   `## Original text`, then the text. With a URL also try `save-offer <url> --folder <path> --pdf-only`.
   Tell candidate in one line when there is no PDF.

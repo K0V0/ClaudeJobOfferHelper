@@ -1,10 +1,68 @@
 #!/bin/sh
-# Runs scripts/save_offer.py with whichever Python this system has, on Windows python3 is often a dead store alias
-root="$(cd "$(dirname "$0")/.." && pwd)"
+# Runs the prebuilt save-offer for this system, downloaded once and checked against save-offer.lock.
+# Without a usable build it runs scripts/save_offer.py with whichever Python this system has.
+here="$(cd "$(dirname "$0")" && pwd)"
+tools="$HOME/JobOfferHelper/.tools"
+
+platform() {
+    case "$(uname -s)-$(uname -m)" in
+        Linux-x86_64) echo linux-x64 ;;
+        Linux-aarch64 | Linux-arm64) echo linux-arm64 ;;
+        Darwin-arm64) echo macos-arm64 ;;
+        Darwin-x86_64) echo macos-x64 ;;
+        MINGW* | MSYS* | CYGWIN*) echo windows-x64.exe ;;
+    esac
+}
+
+fetch() {
+    if command -v curl >/dev/null 2>&1; then
+        curl -fsSL --retry 2 -o "$2" "$1"
+    elif command -v wget >/dev/null 2>&1; then
+        wget -q -O "$2" "$1"
+    else
+        return 1
+    fi
+}
+
+checksum() {
+    if command -v sha256sum >/dev/null 2>&1; then
+        sha256sum "$1" | cut -d ' ' -f 1
+    elif command -v shasum >/dev/null 2>&1; then
+        shasum -a 256 "$1" | cut -d ' ' -f 1
+    fi
+}
+
+prebuilt() {
+    [ -f "$here/save-offer.lock" ] || return 1
+    line="$(grep "^save-offer-$(platform) " "$here/save-offer.lock" | tr -d '\r')" || return 1
+    set -- $line
+    target="$tools/$2-$1"
+    if [ ! -x "$target" ]; then
+        echo "Downloading save-offer, only the first time ..." >&2
+        partial="$tools/partial-$$-$1"  # Windows runs only names ending with .exe
+        mkdir -p "$tools"
+        if ! fetch "$3" "$partial" || [ "$(checksum "$partial")" != "$2" ] || ! chmod +x "$partial" || ! "$partial" --help >/dev/null 2>&1; then
+            echo "Prebuilt save-offer can not be used here, trying Python." >&2
+            rm -f "$partial"
+            return 1
+        fi
+        mv "$partial" "$target"
+        for old in "$tools"/*-"$1"; do
+            [ "$old" = "$target" ] || rm -f "$old"
+        done
+    fi
+    echo "$target"
+}
+
+if executable="$(prebuilt)"; then
+    exec "$executable" "$@"
+fi
+
+# on Windows python3 is often a dead store alias
 for python in python3 python py; do
     if command -v "$python" >/dev/null 2>&1 && "$python" -c 'import sys; sys.exit(sys.version_info < (3, 10))' 2>/dev/null; then
-        exec "$python" "$root/scripts/save_offer.py" "$@"
+        exec "$python" "$here/../scripts/save_offer.py" "$@"
     fi
 done
-echo "FAILED: Python 3.10 or newer not found. Nothing was written." >&2
+echo "FAILED: no prebuilt save-offer and no Python 3.10 or newer. Nothing was written." >&2
 exit 3

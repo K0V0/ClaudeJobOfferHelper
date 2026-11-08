@@ -21,7 +21,7 @@ from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 import requests
 from bs4 import BeautifulSoup
 
-SCRIPTS = Path(__file__).resolve().parent
+SCRIPTS = Path(getattr(sys, "_MEIPASS", Path(__file__).resolve().parent))  # _MEIPASS = unpacked prebuilt executable
 sys.path.insert(0, str(SCRIPTS))
 
 from common import generic_extract  # noqa: E402
@@ -89,6 +89,16 @@ def find_browser():
     return on_path or next((str(path) for path in browser_locations() if path.is_file()), None)
 
 
+def browser_environment():
+    """Prebuilt executable points Linux to its own libraries, the browser needs the system ones."""
+    environment = dict(os.environ)
+    if getattr(sys, "frozen", False):
+        environment.pop("LD_LIBRARY_PATH", None)
+        if "LD_LIBRARY_PATH_ORIG" in environment:
+            environment["LD_LIBRARY_PATH"] = environment["LD_LIBRARY_PATH_ORIG"]
+    return environment
+
+
 def run_browser(arguments):
     browser = find_browser()
     if not browser:
@@ -98,7 +108,7 @@ def run_browser(arguments):
         command = [browser, "--headless=new", "--disable-gpu", "--no-first-run", f"--user-data-dir={profile}",
                    "--virtual-time-budget=9000", *arguments]
         try:
-            return subprocess.run(command, capture_output=True, timeout=90)
+            return subprocess.run(command, capture_output=True, timeout=90, env=browser_environment())
         except subprocess.TimeoutExpired:
             return None
 

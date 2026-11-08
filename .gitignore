@@ -2,3 +2,5 @@ profile/
 .idea/
 page/
 __pycache__/
+dist/
+build/

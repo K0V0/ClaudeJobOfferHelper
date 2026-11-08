@@ -1,0 +1,94 @@
+# Builds and tests save-offer on every system, a tag like save-offer-v1 also publishes the builds as a release.
+name: save-offer
+
+on:
+  pull_request:
+    paths:
+      - "scripts/**"
+      - "bin/**"
+      - ".github/workflows/save-offer.yml"
+  push:
+    tags:
+      - "save-offer-v*"
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { os: ubuntu-22.04, name: save-offer-linux-x64 }
+          - { os: ubuntu-22.04-arm, name: save-offer-linux-arm64 }
+          - { os: macos-15-intel, name: save-offer-macos-x64 }
+          - { os: macos-15, name: save-offer-macos-arm64 }
+          - { os: windows-2022, name: save-offer-windows-x64.exe }
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build
+        run: |
+          python -m pip install pyinstaller==6.22.3 requests==2.34.2 beautifulsoup4==4.15.0
+          python scripts/build_executable.py "${{ matrix.name }}"
+      - name: Test the build
+        run: |
+          # too short to be an offer, so getting this far proves HTTPS, parsing and the extractors work
+          set +e
+          output="$("dist/${{ matrix.name }}" https://example.com 2>&1)"
+          status=$?
+          set -e
+          echo "$output"
+          test "$status" = 2
+          echo "$output" | grep "offer text not found"
+      - name: Test download by the launchers
+        run: |
+          sha="$(python -c "import hashlib, sys; print(hashlib.sha256(open(sys.argv[1], 'rb').read()).hexdigest())" "dist/${{ matrix.name }}")"
+          echo "${{ matrix.name }} $sha http://127.0.0.1:8123/${{ matrix.name }}" > bin/save-offer.lock
+          python -m http.server 8123 --bind 127.0.0.1 --directory dist &
+          sleep 3
+          export HOME="$RUNNER_TEMP/home"
+          mkdir -p "$HOME"
+          status=0
+          bin/save-offer https://example.com || status=$?
+          test "$status" = 2
+          test -f "$HOME/JobOfferHelper/.tools/$sha-${{ matrix.name }}"
+      - name: Test download by the PowerShell launcher
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $env:USERPROFILE = "$env:RUNNER_TEMP\powershell-home"
+          New-Item -ItemType Directory -Force -Path $env:USERPROFILE | Out-Null
+          powershell -NoProfile -ExecutionPolicy Bypass -File bin\save-offer.ps1 'https://example.com/?a=1&b=2'
+          if ($LASTEXITCODE -ne 2) { exit 1 }
+          if (-not (Get-ChildItem "$env:USERPROFILE\JobOfferHelper\.tools\*-${{ matrix.name }}")) { exit 1 }
+          exit 0
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.name }}
+          path: dist/${{ matrix.name }}
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/')
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cd dist
+          for file in save-offer-*; do
+            echo "$file $(sha256sum "$file" | cut -d ' ' -f 1) https://github.com/$GITHUB_REPOSITORY/releases/download/$GITHUB_REF_NAME/$file"
+          done > save-offer.lock
+          gh release create "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY" --title "$GITHUB_REF_NAME" --notes "Prebuilt save-offer." save-offer-* save-offer.lock
