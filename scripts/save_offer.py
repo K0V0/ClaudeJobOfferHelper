@@ -8,6 +8,7 @@ Exit codes: 0 = saved, 2 = offer text could not be read, nothing was written.
 import argparse
 import datetime
 import importlib.util
+import os
 import re
 import shutil
 import subprocess
@@ -28,7 +29,11 @@ from common import generic_extract  # noqa: E402
 OFFER_ROOT = SCRIPTS.parent / "profile" / "offer-results"
 TEXT_MARKER = "## Original text"
 MIN_TEXT_LENGTH = 400
-BROWSERS = ("google-chrome", "chromium-browser", "chromium")
+BROWSER_COMMANDS = ("google-chrome", "google-chrome-stable", "chrome", "chromium-browser", "chromium",
+                    "microsoft-edge", "microsoft-edge-stable", "msedge", "brave-browser")
+MAC_BROWSERS = ("Google Chrome", "Chromium", "Microsoft Edge", "Brave Browser")
+WINDOWS_BROWSERS = ("Google/Chrome/Application/chrome.exe", "Chromium/Application/chrome.exe",
+                    "Microsoft/Edge/Application/msedge.exe", "BraveSoftware/Brave-Browser/Application/brave.exe")
 USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36"
 TRACKING_PARAMS = {"searchid", "rps", "impressionid", "position", "pagenum", "refid", "trackingid", "search_id", "lang"}
 PRINT_CSS = """
@@ -67,15 +72,28 @@ def canonical_url(url):
     return urlunsplit((parts.scheme, parts.netloc, parts.path.rstrip("/"), urlencode(query), ""))
 
 
+def browser_locations():
+    """macOS and Windows browsers are usually not on PATH."""
+    for name in MAC_BROWSERS:
+        for root in (Path("/Applications"), Path.home() / "Applications"):
+            yield root / f"{name}.app" / "Contents" / "MacOS" / name
+    roots = [os.environ[name] for name in ("PROGRAMFILES", "PROGRAMFILES(X86)", "LOCALAPPDATA") if os.environ.get(name)]
+    for executable in WINDOWS_BROWSERS:
+        for root in roots:
+            yield Path(root) / executable
+
+
 def find_browser():
-    return next((path for path in map(shutil.which, BROWSERS) if path), None)
+    on_path = next((path for path in map(shutil.which, BROWSER_COMMANDS) if path), None)
+    return on_path or next((str(path) for path in browser_locations() if path.is_file()), None)
 
 
 def run_browser(arguments):
     browser = find_browser()
     if not browser:
         return None
-    with tempfile.TemporaryDirectory() as profile:
+    # Chrome on Windows can hold its profile files for a moment after it exits
+    with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as profile:
         command = [browser, "--headless=new", "--disable-gpu", "--no-first-run", f"--user-data-dir={profile}",
                    "--virtual-time-budget=9000", *arguments]
         try:
@@ -201,7 +219,8 @@ def print_pdf(page, base_url, target):
     head.insert(0, soup.new_tag("meta", charset="utf-8"))
     head.append(style)
     target = target.resolve()
-    with tempfile.TemporaryDirectory() as folder:
+    # next to the target, snap Chromium on Ubuntu has its own /tmp and would not see the copy there
+    with tempfile.TemporaryDirectory(dir=target.parent, ignore_cleanup_errors=True) as folder:
         copy = Path(folder) / "page.html"
         copy.write_text(str(soup), encoding="utf-8")
         result = run_browser(["--no-pdf-header-footer", f"--print-to-pdf={target}", copy.as_uri()])
@@ -214,6 +233,8 @@ def save_pdf(page, base_url, folder, changed, today):
         if not changed:
             return "unchanged"
         target = free_name(folder, "offer-page", ".pdf", today)
+    if not find_browser():
+        return "failed, no Chrome, Chromium, Edge or Brave found"
     if not page:
         return "failed"
     return target.name if print_pdf(page, base_url, target) else "failed"
@@ -225,6 +246,7 @@ def main():
     parser.add_argument("--folder", type=Path, help="offer folder, default is existing folder of this link or a new one")
     parser.add_argument("--pdf-only", action="store_true", help="only print the page, for offers pasted by candidate")
     args = parser.parse_args()
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")  # Windows console would crash on Czech letters
     today = datetime.date.today().isoformat()
 
     portal, module = find_portal(args.url)
