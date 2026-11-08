@@ -95,6 +95,7 @@ Used to alert candidate. Every found red flag is reported with severity and with
 | hackathons; weekend events | unpaid weekend work presented as fun | warning | Are weekend events paid or voluntary ? |
 | salary based on performance; motivating bonuses | low base salary, unclear bonus rules | alert | What is the base salary and what part of bonuses was paid last year ? |
 | salary up to X | real offer will be near the bottom | info | What is the bottom of the range and what decides the final number ? |
+| tah na branku / tah na bránu; results-driven; goal-oriented | pressure on output over quality, results expected without clear goals or support | warning | How are goals set and what happens when they are not met ? |
 
 ### Perks instead of benefits
 

@@ -1,3 +1,4 @@
 profile/
 .idea/
 page/
+__pycache__/
