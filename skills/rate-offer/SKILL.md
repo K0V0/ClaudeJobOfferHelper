@@ -159,16 +159,16 @@ Rules:
 
 Follow *Calculation and results presentation* in `${CLAUDE_PLUGIN_ROOT}/assignments/task1.md`, in this order:
 
-1. Summary part from `${CLAUDE_PLUGIN_ROOT}/assignments/task1.md`, including seniority: offer level vs candidate target level,
-   and field: offer field and core stack vs candidate *Job target*, for example
+1. Summary table: property | value, from summary part of `${CLAUDE_PLUGIN_ROOT}/assignments/task1.md`, including seniority:
+   offer level vs candidate target level, and field: offer field and core stack vs candidate *Job target*, for example
    `backend, Java + Spring Boot (target: backend, Java + Spring Boot)`.
-2. Requirement table: requirement | must / nice | required level | candidate level | match (yes / partial / no / unknown).
-3. Statistics table, exactly with rows from `${CLAUDE_PLUGIN_ROOT}/assignments/task1.md`. Show points next to percentage,
+2. Statistics table, exactly with rows from `${CLAUDE_PLUGIN_ROOT}/assignments/task1.md`. Show points next to percentage,
    for example `75 % (6 / 8)`.
    - *Hard skills fit* shows must have, nice to have and total.
    - *missed* rows = maximum points minus gained points, so partial match counts half as missed.
    - *hard skills missed* row also shows the penalty, for example `36 % (5 / 14), 3 must have missing: -6`.
    - *total* row shows the formula, for example `43 % ((9 + 6 - 1 - 6) / 21)`.
+3. Requirement table: requirement | must / nice | required level | candidate level | match (yes / partial / no / unknown).
 4. Findings table: finding | category | severity | detail
    - missing skill - severity `required` (must have) or `optional` (nice to have),
      detail = required vs candidate level
