@@ -3,10 +3,11 @@
 - Offer: pasted by candidate, see `offer.md` (IČO, full remote possible, rate not stated, end client not named)
 - Rating: 80 % SUITABLE
 - Prompt: Free letter, no limit
+- Format: Bullets
 - Language: Slovak
-- Employer type: consultancy, bullet style from own samples on candidate's request (`Label: explanation`, colon instead of candidate's ` - `)
+- Employer type: consultancy, bullet style from own samples
 - ATS: generic
-- Bullet rewrite of `cover-letter-2026-11-09.md`, same facts and hook. Free-text *Own words* not answered yet
+- Corrected by candidate: general, no project names, *Spolupráca* in candidate's wording
 
 ## Normal version
 
@@ -21,10 +22,10 @@ V krátkosti o mne:
 
 V čom viem byť pre Vás prínosom:
 
-- Funkcionalita ako celok: dohodneme sa na prístupe a ďalej ju samostatne dotiahnem až po nasadenie. Takto robím aj vlastné projekty, napríklad rozšírenie do Chrome Tabilinks.
+- Funkcionalita ako celok: dohodneme sa na prístupe a ďalej ju samostatne dotiahnem až po nasadenie. Takto pracujem aj na vlastných projektoch.
 - Biznis obraz: chcem vedieť, prečo je daná implementácia potrebná a komu pomôže.
-- Kvalita: nerád robím niečo dvakrát. Na jednom projekte som nastavil spôsob testovania, podľa ktorého potom testovali aj ostatní.
-- Spolupráca: práca na diaľku a IČO mi vyhovujú. Bývam v Stredočeskom kraji, takže keď bude treba, do Prahy to mám blízko.
+- Kvalita: nerád robím niečo dvakrát, preto si dávam záležať na testoch a čitateľnosti kódu.
+- Spolupráca: práca na diaľku a IČO je pre mňa vyhovujúca. Bývam v Stredočeskom kraji, takže ani občasná prítomnosť na pracovisku osobne mi v prípade potreby neprekáža.
 
 Viac o mne a mojich projektoch nájdete na https://kovo.space, LinkedIn profil: https://www.linkedin.com/in/kovac-matej/
 
@@ -48,10 +49,10 @@ V krátkosti o mne:
 
 V čom viem byť pre Vás prínosom:
 
-- Funkcionalita ako celok: dohodneme sa na prístupe a ďalej ju samostatne dotiahnem až po nasadenie. Takto robím aj vlastné projekty, napríklad rozšírenie do Chrome Tabilinks.
+- Funkcionalita ako celok: dohodneme sa na prístupe a ďalej ju samostatne dotiahnem až po nasadenie. Takto pracujem aj na vlastných projektoch.
 - Biznis obraz: chcem vedieť, prečo je daná implementácia potrebná a komu pomôže.
-- Kvalita: nerád robím niečo dvakrát. Na jednom projekte som nastavil spôsob testovania, podľa ktorého potom testovali aj ostatní.
-- Spolupráca: práca na diaľku a IČO mi vyhovujú. Bývam v Stredočeskom kraji, takže keď bude treba, do Prahy to mám blízko.
+- Kvalita: nerád robím niečo dvakrát, preto si dávam záležať na testoch a čitateľnosti kódu.
+- Spolupráca: práca na diaľku a IČO je pre mňa vyhovujúca. Bývam v Stredočeskom kraji, takže ani občasná prítomnosť na pracovisku osobne mi v prípade potreby neprekáža.
 
 Viac o mne a mojich projektoch nájdete na https://kovo.space, LinkedIn profil: https://www.linkedin.com/in/kovac-matej/
 

@@ -7,7 +7,7 @@
 - Language: Slovak
 - Employer type: consultancy, bullet style from own samples
 - ATS: generic
-- `cover-letter-2026-11-09-2.md` with candidate's corrections: general, no project names, *Spolupráca* in candidate's wording
+- Corrected by candidate: general, no project names, *Spolupráca* in candidate's wording
 
 ## Normal version
 
