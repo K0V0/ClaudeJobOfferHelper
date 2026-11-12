@@ -132,15 +132,29 @@ def empty_offer():
     return {"title": "", "company": "", "location": "", "salary": "", "posted": "", "valid_through": "", "text": ""}
 
 
+def title_container(soup):
+    """Largest block around the h1 that holds no site menu or footer, for pages built without main / article
+    (Elementor, WordPress page builders)."""
+    node = soup.find("h1")
+    if not node:
+        return None
+    while node.parent and node.parent.name not in {"body", "html", "[document]"} \
+            and not node.parent.find(["nav", "footer"]):
+        node = node.parent
+    return node
+
+
 def generic_extract(soup):
-    """Used for portals without own extractor: structured data first, then the biggest content block."""
+    """Used for portals without own extractor: structured data first, then the biggest content block,
+    then the block around the title."""
     posting = job_posting(soup)
     if posting and posting.get("description"):
         return from_job_posting(posting)
     candidates = soup.find_all(["main", "article"])
-    if not candidates:
+    content = max(candidates, key=lambda node: len(node.get_text())) if candidates else title_container(soup)
+    if not content:
         return None
     offer = empty_offer()
     offer["title"] = clean(soup.find("h1")) or clean(soup.title)
-    offer["text"] = html_to_text(max(candidates, key=lambda node: len(node.get_text())))
+    offer["text"] = html_to_text(content)
     return offer
